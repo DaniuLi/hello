@@ -4,7 +4,12 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
 </view>
+
+<view>
+<button type="primary" size="default"  plain="true"> 新建作业组 </button>
+</view>
+<view>
+<button type="primary" size="default"  plain="true"> 布置作业 </button>
+</view>
+<button type="primary" size="default"  plain="true"> 提交作业 </button>

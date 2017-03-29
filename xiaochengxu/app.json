@@ -1,7 +1,7 @@
 {
  "pages":[
-    "pages/topics/topics",
     "pages/index/index",
+    "pages/topics/topics",
     "pages/logs/logs",
     "pages/detail/detail"
   ],
@@ -20,7 +20,7 @@
     "borderStyle":"white",
     "list":[{
       "pagePath":"pages/topics/topics",
-      "text":"首页",
+      "text":"作业",
       "iconPath":"images/tabBar/list.png",
       "selectedIconPath":"images/tabBar/list_hl.png"
     },{

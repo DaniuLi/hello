@@ -4,6 +4,12 @@ var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
+    defaultSize: 'default',
+    primarySize: 'default',
+    warnSize: 'default',
+    disabled: false,
+    plain: false,
+    loading: false,
     userInfo: {}
   },
   //事件处理函数
