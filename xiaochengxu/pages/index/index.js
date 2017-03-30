@@ -18,6 +18,12 @@ Page({
       url: '../logs/logs'
     })
   },
+  //事件处理函数
+  bindNewGroupButtonTap: function() {
+    wx.navigateTo({
+      url: '../group/group'
+    })
+  },
   onLoad: function () {
     console.log('onLoad')
     var that = this

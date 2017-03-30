@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/topics/topics",
     "pages/logs/logs",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/group/group",
+    "pages/task/task"
   ],
   "window":{
     "backgroundTextStyle":"black",

@@ -6,10 +6,9 @@
   </view>
 </view>
 
-<view>
-<button type="primary" size="default"  plain="true"> 新建作业组 </button>
-</view>
-<view>
-<button type="primary" size="default"  plain="true"> 布置作业 </button>
-</view>
-<button type="primary" size="default"  plain="true"> 提交作业 </button>
+
+<button bindtap="bindNewGroupButtonTap" class="marginview" type="primary" size="default"  plain="true"> 新建作业组 </button>
+
+<button class="marginview" type="primary" size="default"  plain="true"> 布置作业 </button>
+
+<button class="marginview" type="primary" size="default"  plain="true"> 提交作业 </button>
