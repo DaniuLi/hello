@@ -76,8 +76,8 @@ Page({
     hidden: true,
     topBarItems: [
       // id name selected 选中状态
-      {id:'all',name:'作业内容',selected:true},
-      {id:'good',name:'作业列表',selected:false},
+      {id:'all',name:'作业列表',selected:true},
+      {id:'good',name:'已交作业',selected:false},
       {id:'ask',name:'问答',selected:false},
     ],
     page: 1,

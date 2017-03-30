@@ -7,8 +7,8 @@
 </view>
 
 
-<button bindtap="bindNewGroupButtonTap" class="weui-btn" type="primary" size="default"  plain="true"> 新建作业组 </button>
+<button bindtap="bindNewGroupButtonTap" class="weui-btn" type="primary" size="default"  plain="true"> 建作业组 </button>
 
-<button class="weui-btn" type="primary" size="default"  plain="true"> 布置作业 </button>
+<button bindtap="bindNewTaskButtonTap" class="weui-btn" type="primary" size="default"  plain="true"> 布置作业 </button>
 
 <button class="weui-btn" type="primary" size="default"  plain="true"> 提交作业 </button>

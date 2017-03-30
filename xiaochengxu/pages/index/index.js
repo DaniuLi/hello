@@ -24,6 +24,12 @@ Page({
       url: '../group/group'
     })
   },
+    //事件处理函数
+  bindNewTaskButtonTap: function() {
+    wx.navigateTo({
+      url: '../task/task'
+    })
+  },
   onLoad: function () {
     console.log('onLoad')
     var that = this
