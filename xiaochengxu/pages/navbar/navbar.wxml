@@ -1,0 +1,38 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-panel__bd"  hidden="{{activeIndex != 0}}">
+                    <view class="weui-media-box weui-media-box_text">
+                        <view class="weui-media-box__title weui-media-box__title_in-text">四月一日作业</view>
+                        <view class="weui-media-box__desc">今日打卡内容：1、阅读绘本并录音 2、默写单词 3、sightword。</view>
+                        <view class="weui-media-box__info">
+                            <view class="weui-media-box__info__meta">Jane</view>
+                            <view class="weui-media-box__info__meta">2017.4.1</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                        </view>
+                    </view>
+                    <view class="weui-media-box weui-media-box_text">
+                        <view class="weui-media-box__title weui-media-box__title_in-text">四月二日作业</view>
+                        <view class="weui-media-box__desc">今日打卡内容：1、阅读绘本并录音 2、默写单词 3、sightword。</view>
+                        <view class="weui-media-box__info">
+                            <view class="weui-media-box__info__meta">Jane</view>
+                            <view class="weui-media-box__info__meta">2017.4.2</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">无</view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">无</view>
+            </view>
+        </view>
+    </view>
+</view>

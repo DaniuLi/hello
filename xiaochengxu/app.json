@@ -1,11 +1,13 @@
 {
  "pages":[
     "pages/index/index",
+    "pages/navbar/navbar",
     "pages/topics/topics",
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/group/group",
     "pages/task/task"
+
   ],
   "window":{
     "backgroundTextStyle":"black",
@@ -21,7 +23,7 @@
     "backgroundColor":"#fff",
     "borderStyle":"white",
     "list":[{
-      "pagePath":"pages/topics/topics",
+      "pagePath":"pages/navbar/navbar",
       "text":"作业",
       "iconPath":"images/tabBar/list.png",
       "selectedIconPath":"images/tabBar/list_hl.png"
