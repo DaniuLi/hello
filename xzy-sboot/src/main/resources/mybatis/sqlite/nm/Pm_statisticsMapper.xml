@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pm_statisticsMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_PM_STATISTICS(
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMID,
+			DEVID,	
+			GROUPCALLS,	
+			GROUPCALLDURATION,	
+			PRIVATECALLS,	
+			PRIVATECALLDURATION,	
+			EMERGENCYCALLS,	
+			EMERGENCYCALLDURATION,	
+			PHONECALLS,	
+			PHONECALLDURATION,	
+			SHORTMESSAGES,	
+			STATUSMESSAGES,	
+			POSITIONMESSAGES,	
+			FAILEDGROUPCALLS,	
+			FAILEDPRIVATECALLS,	
+			FAILEDEMERGENCYCALLS,	
+			FAILEDPHONECALLS,	
+			TOTALCALLS,	
+			TSBUSYCOUNT,
+			OPDATE,	
+			INTIME,	
+			PM_STATISTICS_ID
+		) values (
+			#{TASKID},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{SYSTEMID},
+			#{DEVID},	
+			#{GROUPCALLS},	
+			#{GROUPCALLDURATION},	
+			#{PRIVATECALLS},	
+			#{PRIVATECALLDURATION},	
+			#{EMERGENCYCALLS},	
+			#{EMERGENCYCALLDURATION},	
+			#{PHONECALLS},	
+			#{PHONECALLDURATION},	
+			#{SHORTMESSAGES},	
+			#{STATUSMESSAGES},	
+			#{POSITIONMESSAGES},	
+			#{FAILEDGROUPCALLS},	
+			#{FAILEDPRIVATECALLS},	
+			#{FAILEDEMERGENCYCALLS},	
+			#{FAILEDPHONECALLS},	
+			#{TOTALCALLS},	
+			#{TSBUSYCOUNT},
+			#{OPDATE},	
+			#{INTIME},	
+			#{PM_STATISTICS_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_PM_STATISTICS
+		where 
+			PM_STATISTICS_ID = #{PM_STATISTICS_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_PM_STATISTICS
+			set 
+				TASKID = #{TASKID},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				SYSTEMID = #{SYSTEMID},
+				DEVID=#{DEVID},
+				GROUPCALLS = #{GROUPCALLS},
+				GROUPCALLDURATION = #{GROUPCALLDURATION},
+				PRIVATECALLS = #{PRIVATECALLS},
+				PRIVATECALLDURATION = #{PRIVATECALLDURATION},
+				EMERGENCYCALLS = #{EMERGENCYCALLS},
+				EMERGENCYCALLDURATION = #{EMERGENCYCALLDURATION},
+				PHONECALLS = #{PHONECALLS},
+				PHONECALLDURATION = #{PHONECALLDURATION},
+				SHORTMESSAGES = #{SHORTMESSAGES},
+				STATUSMESSAGES = #{STATUSMESSAGES},
+				POSITIONMESSAGES = #{POSITIONMESSAGES},
+				FAILEDGROUPCALLS = #{FAILEDGROUPCALLS},
+				FAILEDPRIVATECALLS = #{FAILEDPRIVATECALLS},
+				FAILEDEMERGENCYCALLS = #{FAILEDEMERGENCYCALLS},
+				FAILEDPHONECALLS = #{FAILEDPHONECALLS},
+				TOTALCALLS = #{TOTALCALLS},
+				TSBUSYCOUNT = #{TSBUSYCOUNT},
+				OPDATE = #{OPDATE},
+				INTIME = #{INTIME},
+			PM_STATISTICS_ID = PM_STATISTICS_ID
+			where 
+				PM_STATISTICS_ID = #{PM_STATISTICS_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMID,
+			DEVID,	
+			GROUPCALLS,	
+			GROUPCALLDURATION,	
+			PRIVATECALLS,	
+			PRIVATECALLDURATION,	
+			EMERGENCYCALLS,	
+			EMERGENCYCALLDURATION,	
+			PHONECALLS,	
+			PHONECALLDURATION,	
+			SHORTMESSAGES,	
+			STATUSMESSAGES,	
+			POSITIONMESSAGES,	
+			FAILEDGROUPCALLS,	
+			FAILEDPRIVATECALLS,	
+			FAILEDEMERGENCYCALLS,	
+			FAILEDPHONECALLS,	
+			TOTALCALLS,	
+			TSBUSYCOUNT,
+			OPDATE,	
+			INTIME,	
+			PM_STATISTICS_ID
+		from 
+			TB_PM_STATISTICS
+		where 
+			PM_STATISTICS_ID = #{PM_STATISTICS_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMID,	
+				a.DEVID,
+				a.GROUPCALLS,	
+				a.GROUPCALLDURATION,	
+				a.PRIVATECALLS,	
+				a.PRIVATECALLDURATION,	
+				a.EMERGENCYCALLS,	
+				a.EMERGENCYCALLDURATION,	
+				a.PHONECALLS,	
+				a.PHONECALLDURATION,	
+				a.SHORTMESSAGES,	
+				a.STATUSMESSAGES,	
+				a.POSITIONMESSAGES,	
+				a.FAILEDGROUPCALLS,	
+				a.FAILEDPRIVATECALLS,	
+				a.FAILEDEMERGENCYCALLS,	
+				a.FAILEDPHONECALLS,	
+				a.TOTALCALLS,
+				a.TSBUSYCOUNT,	
+				a.OPDATE,	
+				a.INTIME,	
+				a.PM_STATISTICS_ID
+		from 
+				TB_PM_STATISTICS a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMID,	
+				a.DEVID,
+				a.GROUPCALLS,	
+				a.GROUPCALLDURATION,	
+				a.PRIVATECALLS,	
+				a.PRIVATECALLDURATION,	
+				a.EMERGENCYCALLS,	
+				a.EMERGENCYCALLDURATION,	
+				a.PHONECALLS,	
+				a.PHONECALLDURATION,	
+				a.SHORTMESSAGES,	
+				a.STATUSMESSAGES,	
+				a.POSITIONMESSAGES,	
+				a.FAILEDGROUPCALLS,	
+				a.FAILEDPRIVATECALLS,	
+				a.FAILEDEMERGENCYCALLS,	
+				a.FAILEDPHONECALLS,	
+				a.TOTALCALLS,	
+				a.TSBUSYCOUNT,
+				a.OPDATE,	
+				a.INTIME,	
+				a.PM_STATISTICS_ID
+		from 
+				TB_PM_STATISTICS a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_PM_STATISTICS
+		where 
+			PM_STATISTICS_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<!-- 通过ID获取数据 -->
+	<select id="findPmstaticsCount" parameterType="pd" resultType="java.lang.Integer">
+		select 			
+			count(PM_STATISTICS_ID) as COUNT
+		from 
+			TB_PM_STATISTICS 
+		where 
+            TASKID = #{TASKID}
+        and
+            PROVINCEID = #{PROVINCEID}
+        and
+            CITYID = #{CITYID}
+        and
+            SYSTEMID = #{SYSTEMID}    
+        and
+            DEVID = #{DEVID} 
+        and
+            OPDATE = #{OPDATE}            
+	</select>
+
+
+	<!-- 修改 -->
+	<update id="updatePmstaticsData" parameterType="pd">
+		update  TB_PM_STATISTICS
+			set 			
+				GROUPCALLS = #{GROUPCALLS},
+				GROUPCALLDURATION = #{GROUPCALLDURATION},
+				PRIVATECALLS = #{PRIVATECALLS},
+				PRIVATECALLDURATION = #{PRIVATECALLDURATION},
+				EMERGENCYCALLS = #{EMERGENCYCALLS},
+				EMERGENCYCALLDURATION = #{EMERGENCYCALLDURATION},
+				PHONECALLS = #{PHONECALLS},
+				PHONECALLDURATION = #{PHONECALLDURATION},
+				SHORTMESSAGES = #{SHORTMESSAGES},
+				STATUSMESSAGES = #{STATUSMESSAGES},
+				POSITIONMESSAGES = #{POSITIONMESSAGES},
+				FAILEDGROUPCALLS = #{FAILEDGROUPCALLS},
+				FAILEDPRIVATECALLS = #{FAILEDPRIVATECALLS},
+				FAILEDEMERGENCYCALLS = #{FAILEDEMERGENCYCALLS},
+				FAILEDPHONECALLS = #{FAILEDPHONECALLS},
+				TOTALCALLS = #{TOTALCALLS},
+				TSBUSYCOUNT = #{TSBUSYCOUNT},
+				OPDATE = #{OPDATE},
+				INTIME = #{INTIME},
+				PM_STATISTICS_ID = PM_STATISTICS_ID
+			where 
+				TASKID = #{TASKID}
+        	and
+            	PROVINCEID = #{PROVINCEID}
+        	and
+            	CITYID = #{CITYID}
+        	and
+            	SYSTEMID = #{SYSTEMID} 
+			and 
+			    DEVID = #{DEVID}             	
+        	and
+            	OPDATE = #{OPDATE}  
+	</update>
+
+
+	<!-- 列表(全部) -->
+	<select id="findTotalCallData" parameterType="pd" resultType="pd">
+	select 
+			sum(GROUPCALLS) as GROUPCALLS,
+			sum(GROUPCALLDURATION) as GROUPCALLDURATION,
+			sum(PRIVATECALLS) as PRIVATECALLS,
+			sum(PRIVATECALLDURATION) as PRIVATECALLDURATION,
+			sum(EMERGENCYCALLS) as EMERGENCYCALLS, 
+			sum(EMERGENCYCALLDURATION) as EMERGENCYCALLDURATION,
+			sum(PHONECALLS) as PHONECALLS,
+			sum(PHONECALLDURATION) as PHONECALLDURATION ,
+			sum(GROUPCALLS+PRIVATECALLS+EMERGENCYCALLS+PHONECALLS) as TOTALCALLTIMES,
+			sum(GROUPCALLDURATION+PRIVATECALLDURATION+EMERGENCYCALLDURATION+PHONECALLDURATION) as TOTALCALLENGTH,
+			sum(FAILEDGROUPCALLS) as FAILEDGROUPCALLS,
+			sum(FAILEDPRIVATECALLS) as FAILEDPRIVATECALLS,
+			sum(FAILEDEMERGENCYCALLS) as FAILEDEMERGENCYCALLS,
+			sum(FAILEDPHONECALLS) as FAILEDPHONECALLS
+	from 	TB_PM_STATISTICS
+	where
+	       	PROVINCEID = #{PROVINCEID}	    
+	<if test="CITYID != null and CITYID!=''" >
+		   and CITYID = #{CITYID}
+	</if>	       	
+	<if test="BEGINDATE != null and BEGINDATE!=''">
+	and	    TO_DAYS(OPDATE) &gt;= TO_DAYS(#{BEGINDATE})
+	</if>	
+	<if test="ENDDATE != null and ENDDATE!=''">
+	and	    TO_DAYS(OPDATE) &lt;= TO_DAYS(#{ENDDATE})
+	</if>	
+
+	</select>
+
+	<!-- 列表市级详细指标信息-->
+	<select id="findDetailCallData" parameterType="pd" resultType="pd">
+	select 
+			GROUPCALLS as GROUPCALLS,
+			GROUPCALLDURATION as GROUPCALLDURATION,
+			PRIVATECALLS as PRIVATECALLS,
+			PRIVATECALLDURATION as PRIVATECALLDURATION,
+			EMERGENCYCALLS as EMERGENCYCALLS, 
+			EMERGENCYCALLDURATION as EMERGENCYCALLDURATION,
+			PHONECALLS as PHONECALLS,
+			PHONECALLDURATION as PHONECALLDURATION ,
+			(GROUPCALLS+PRIVATECALLS+EMERGENCYCALLS+PHONECALLS) as TOTALCALLTIMES,
+			(GROUPCALLDURATION+PRIVATECALLDURATION+EMERGENCYCALLDURATION+PHONECALLDURATION) as TOTALCALLENGTH,
+			(FAILEDGROUPCALLS) as FAILEDGROUPCALLS,
+			(FAILEDPRIVATECALLS) as FAILEDPRIVATECALLS,
+			(FAILEDEMERGENCYCALLS) as FAILEDEMERGENCYCALLS,
+			(FAILEDPHONECALLS) as FAILEDPHONECALLS,
+			OPDATE
+	from 	TB_PM_STATISTICS
+	where
+	       	PROVINCEID = #{PROVINCEID}
+	and	
+	        CITYID = #{CITYID}       	
+	<if test="BEGINDATE != null and BEGINDATE!=''">
+	and	    TO_DAYS(OPDATE) &gt;= TO_DAYS(#{BEGINDATE})
+	</if>	
+	<if test="ENDDATE != null and ENDDATE!=''">
+	and	    TO_DAYS(OPDATE) &lt;= TO_DAYS(#{ENDDATE})
+	</if>		
+
+	order by OPDATE ASC
+
+	</select>
+
+	<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_PM_STATISTICS
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>
+	
+</mapper>

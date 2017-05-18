@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="His_alarmMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_HIS_ALARM(
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			CATEGORY,	
+			SYSTEMID,	
+			SYSTEMNAME,	
+			DEVID,	
+			ALARMID,	
+			SEVERITY,	
+			GENERATETIME,	
+			DESCRIPTION,	
+			CAUSE,	
+			ADVICE,	
+			STATE,	
+			INTIME,	
+			HIS_ALARM_ID
+		) values (
+			#{TASKID},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{CATEGORY},	
+			#{SYSTEMID},	
+			#{SYSTEMNAME},	
+			#{DEVID},	
+			#{ALARMID},	
+			#{SEVERITY},	
+			#{GENERATETIME},	
+			#{DESCRIPTION},	
+			#{CAUSE},	
+			#{ADVICE},	
+			#{STATE},	
+			#{INTIME},	
+			#{HIS_ALARM_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_HIS_ALARM
+		where 
+			HIS_ALARM_ID = #{HIS_ALARM_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_HIS_ALARM
+			set 
+				TASKID = #{TASKID},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				CATEGORY = #{CATEGORY},
+				SYSTEMID = #{SYSTEMID},
+				SYSTEMNAME = #{SYSTEMNAME},
+				DEVID = #{DEVID},
+				ALARMID = #{ALARMID},
+				SEVERITY = #{SEVERITY},
+				GENERATETIME = #{GENERATETIME},
+				DESCRIPTION = #{DESCRIPTION},
+				CAUSE = #{CAUSE},
+				ADVICE = #{ADVICE},
+				STATE = #{STATE},
+				INTIME = #{INTIME},
+			HIS_ALARM_ID = HIS_ALARM_ID
+			where 
+				HIS_ALARM_ID = #{HIS_ALARM_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			fn_topoDevNameByDevId(DEVID) AS DEVNAME,	
+			CATEGORY,	
+			SYSTEMID,	
+			SYSTEMNAME,	
+			DEVID,	
+			ALARMID,	
+			SEVERITY,	
+			GENERATETIME,	
+			DESCRIPTION,	
+			CAUSE,	
+			ADVICE,	
+			STATE,	
+			INTIME,	
+			HIS_ALARM_ID
+		from 
+			TB_HIS_ALARM
+		where 
+			HIS_ALARM_ID = #{HIS_ALARM_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,
+				c.VALUE as CITYNAME,	
+				a.CATEGORY,	
+				a.SYSTEMID,	
+				a.SYSTEMNAME,	
+				a.DEVID,	
+				fn_topoDevNameByDevId(a.DEVID) AS DEVNAME,	
+				a.ALARMID,	
+				a.SEVERITY,	
+				a.GENERATETIME,	
+				a.DESCRIPTION,	
+				a.CAUSE,	
+				a.ADVICE,	
+				a.STATE,	
+				a.INTIME,	
+				a.HIS_ALARM_ID
+		from 
+				TB_HIS_ALARM a
+		left join 
+				TB_CITY_INFO c
+		on
+                a.CITYID = c.CITYID
+                and a.PROVINCEID = c.PROVINCEID
+		where
+		        a.HIS_ALARM_ID= HIS_ALARM_ID
+		<if test="pd.STARTTIME != null and pd.STARTTIME!='' ">
+			and	    TO_DAYS(a.GENERATETIME) &gt;= TO_DAYS(#{pd.STARTTIME})
+		</if>	
+		<if test="pd.ENDTIME != null and pd.ENDTIME!='' ">
+			and	    TO_DAYS(a.GENERATETIME) &lt;= TO_DAYS(#{pd.ENDTIME})
+		</if>	
+		<if test="pd.CITYID != null and pd.CITYID !='' ">
+			and	    a.CITYID in (${pd.CITYID})
+		</if>
+		ORDER BY GENERATETIME		
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.CATEGORY,	
+				a.SYSTEMID,	
+				a.SYSTEMNAME,	
+				a.DEVID,	
+				fn_topoDevNameByDevId(a.DEVID) AS DEVNAME,	
+				a.ALARMID,	
+				a.SEVERITY,	
+				a.GENERATETIME,	
+				a.DESCRIPTION,	
+				a.CAUSE,	
+				a.ADVICE,	
+				a.STATE,	
+				a.INTIME,	
+				a.HIS_ALARM_ID
+		from 
+				TB_HIS_ALARM a
+		ORDER BY GENERATETIME	
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_HIS_ALARM
+		where 
+			HIS_ALARM_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_HIS_ALARM
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>	
+	
+</mapper>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Verified_nameMapper">
+	<!--实名用户信息-->
+
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_VERIFIED_NAME(
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMNAME,	
+			SYSTEMID,	
+			NAME,	
+			POLICENUM,	
+			POST,	
+			POLICETYPE,	
+			PHONENUM,	
+			UNITNAME,	
+			UNITCODE,	
+			USEDESC,	
+			MSI,	
+			MSTYPE,	
+			MSBRAND,	
+			PLATENUM,	
+			OPERATOR,	
+			OPDATE,	
+			INTIME,	
+			VERIFIED_NAME_ID
+		) values (
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{SYSTEMNAME},	
+			#{SYSTEMID},	
+			#{NAME},	
+			#{POLICENUM},	
+			#{POST},	
+			#{POLICETYPE},	
+			#{PHONENUM},	
+			#{UNITNAME},	
+			#{UNITCODE},	
+			#{USEDESC},	
+			#{MSI},	
+			#{MSTYPE},	
+			#{MSBRAND},	
+			#{PLATENUM},	
+			#{OPERATOR},	
+			#{OPDATE},	
+			#{INTIME},	
+			#{VERIFIED_NAME_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_VERIFIED_NAME
+		where 
+			VERIFIED_NAME_ID = #{VERIFIED_NAME_ID}
+	</delete>
+	
+	<!-- 删除  deleteByMsi-->
+	<delete id="deleteByMsi" parameterType="pd">
+		delete from TB_VERIFIED_NAME
+		where 
+			MSI = #{MSI}
+	</delete>
+		
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_VERIFIED_NAME
+			set 
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				SYSTEMNAME = #{SYSTEMNAME},
+				SYSTEMID = #{SYSTEMID},
+				NAME = #{NAME},
+				POLICENUM = #{POLICENUM},
+				POST = #{POST},
+				POLICETYPE = #{POLICETYPE},
+				PHONENUM = #{PHONENUM},
+				UNITNAME = #{UNITNAME},
+				UNITCODE = #{UNITCODE},
+				USEDESC = #{USEDESC},
+				MSI = #{MSI},
+				MSTYPE = #{MSTYPE},
+				MSBRAND = #{MSBRAND},
+				PLATENUM = #{PLATENUM},
+				OPERATOR = #{OPERATOR},
+				OPDATE = #{OPDATE},
+				INTIME = #{INTIME},
+			VERIFIED_NAME_ID = VERIFIED_NAME_ID
+			where 
+				VERIFIED_NAME_ID = #{VERIFIED_NAME_ID}
+	</update>
+	
+	<!-- 修改  editVerifiedUserByMsi-->
+	<insert id="editVerifiedUserByMsi" >
+	  <selectKey keyProperty="count" resultType="int" order="BEFORE">
+	    select count(*) from TB_VERIFIED_NAME where MSI = #{MSI}
+	  </selectKey>
+	  <if test="count > 0">
+	    	update  TB_VERIFIED_NAME
+			set 
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				SYSTEMNAME = #{SYSTEMNAME},
+				SYSTEMID = #{SYSTEMID},
+				NAME = #{NAME},
+				POLICENUM = #{POLICENUM},
+				POST = #{POST},
+				POLICETYPE = #{POLICETYPE},
+				PHONENUM = #{PHONENUM},
+				UNITNAME = #{UNITNAME},
+				UNITCODE = #{UNITCODE},
+				USEDESC = #{USEDESC},
+				MSTYPE = #{MSTYPE},
+				MSBRAND = #{MSBRAND},
+				PLATENUM = #{PLATENUM},
+				OPERATOR = #{OPERATOR},
+				OPDATE = #{OPDATE},
+				INTIME = #{INTIME},
+				MSI = MSI
+			where 
+				MSI = #{MSI}
+	  </if>
+	  <if test="count==0">
+		   insert into TB_VERIFIED_NAME(
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMNAME,	
+			SYSTEMID,	
+			NAME,	
+			POLICENUM,	
+			POST,	
+			POLICETYPE,	
+			PHONENUM,	
+			UNITNAME,	
+			UNITCODE,	
+			USEDESC,	
+			MSI,	
+			MSTYPE,	
+			MSBRAND,	
+			PLATENUM,	
+			OPERATOR,	
+			OPDATE,	
+			INTIME,	
+			VERIFIED_NAME_ID
+		) values (
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{SYSTEMNAME},	
+			#{SYSTEMID},	
+			#{NAME},	
+			#{POLICENUM},	
+			#{POST},	
+			#{POLICETYPE},	
+			#{PHONENUM},	
+			#{UNITNAME},	
+			#{UNITCODE},	
+			#{USEDESC},	
+			#{MSI},	
+			#{MSTYPE},	
+			#{MSBRAND},	
+			#{PLATENUM},	
+			#{OPERATOR},	
+			#{OPDATE},	
+			#{INTIME},	
+			#{VERIFIED_NAME_ID}
+		)
+	  </if>
+	</insert>
+	
+	
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			a.PROVINCEID,	
+			p.VALUE as PROVINCEVALUE,
+			a.CITYID,	
+			c.VALUE as CITYVALUE,
+			a.SYSTEMNAME,	
+			a.SYSTEMID,	
+			a.NAME,	
+			a.POLICENUM,	
+			a.POST,	
+			a.POLICETYPE,	
+			a.PHONENUM,	
+			a.UNITNAME,	
+			a.UNITCODE,	
+			a.USEDESC,	
+			a.MSI,	
+			a.MSTYPE,
+			(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME,		
+			a.MSBRAND,	
+			a.PLATENUM,	
+			a.OPERATOR,	
+			a.OPDATE,	
+			a.INTIME,	
+			a.VERIFIED_NAME_ID
+		from 
+			TB_VERIFIED_NAME a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where  
+		    	a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID
+		    and
+				a.VERIFIED_NAME_ID = #{VERIFIED_NAME_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMNAME,	
+				a.SYSTEMID,	
+				a.NAME,	
+				a.POLICENUM,	
+				a.POST,	
+				a.POLICETYPE,	
+				a.PHONENUM,	
+				a.UNITNAME,	
+				a.UNITCODE,	
+				a.USEDESC,	
+				a.MSI,	
+				a.MSTYPE,	
+				(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME,	
+				a.MSBRAND,	
+				a.PLATENUM,	
+				a.OPERATOR,	
+				a.OPDATE,	
+				a.INTIME,	
+				a.VERIFIED_NAME_ID
+		from 
+				TB_VERIFIED_NAME a
+		ORDER BY INTIME
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMNAME,	
+				a.SYSTEMID,	
+				a.NAME,	
+				a.POLICENUM,	
+				a.POST,	
+				a.POLICETYPE,	
+				a.PHONENUM,	
+				a.UNITNAME,	
+				a.UNITCODE,	
+				a.USEDESC,	
+				a.MSI,	
+				a.MSTYPE,
+				(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME,	
+				a.MSBRAND,	
+				a.PLATENUM,	
+				a.OPERATOR,	
+				a.OPDATE,	
+				a.INTIME,	
+				a.VERIFIED_NAME_ID
+		from 
+				TB_VERIFIED_NAME a
+		ORDER BY INTIME
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_VERIFIED_NAME
+		where 
+			VERIFIED_NAME_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_VERIFIED_NAME
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>
+
+		<!-- 列表(根据条件查询实名用户) -->
+	<select id="getVerifiedUsers" parameterType="pd" resultType="pd">
+		select 
+			*,
+			(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME
+		from 
+			TB_VERIFIED_NAME a
+		where 1=1
+		<if test="PROVINCEID != null and PROVINCEID != ''">
+		and PROVINCEID = #{PROVINCEID}
+		</if>
+		<if test="CITYID != null and CITYID != ''">
+		and CITYID = #{CITYID}
+		</if>
+		<if test="UNITNAME != null and UNITNAME != ''">
+		and UNITNAME = #{UNITNAME}
+		</if>
+		<if test="POLICETYPE != null and POLICETYPE != ''">
+		and POLICETYPE = #{POLICETYPE}
+		</if>		
+	</select>
+	
+	<select id="getVerifiedUserslistPage" parameterType="page" resultType="pd">
+		select
+			*,
+			(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME
+		from 
+			TB_VERIFIED_NAME a
+		where 1=1
+		<if test="pd.PROVINCEID != null and pd.PROVINCEID != ''">
+		and PROVINCEID = #{pd.PROVINCEID}
+		</if>
+		<if test="pd.CITYID != null and pd.CITYID != ''">
+		and CITYID = #{pd.CITYID}
+		</if>
+		<if test="pd.UNITNAME != null and pd.UNITNAME != ''">
+		and UNITNAME = #{pd.UNITNAME}
+		</if>
+		<if test="pd.POLICETYPE != null and pd.POLICETYPE != ''">
+		and POLICETYPE = #{pd.POLICETYPE}
+		</if>		
+	</select>
+	
+	
+	<select id="getVerifiedUsersForInms" parameterType="page" resultType="pd">
+		select
+			*,
+			fn_cityNameByCityId(a.CITYID) AS CITYNAME;
+		from 
+			TB_VERIFIED_NAME a
+		where 1=1
+		<if test="pd.PROVINCEID != null and pd.PROVINCEID != ''">
+		and PROVINCEID = #{pd.PROVINCEID}
+		</if>
+		<if test="pd.CITYID != null and pd.CITYID != ''">
+		and CITYID = #{pd.CITYID}
+		</if>
+		<if test="pd.NAME != null and pd.NAME != ''">
+		and NAME LIKE #{pd.NAME}
+		</if>
+		<if test="pd.MSI != null and pd.MSI != ''">
+		and MSI LIKE  #{pd.MSI}
+		</if>		
+	</select>
+	
+	
+	
+	<!-- 根据用户的ID获取实名制用户信息,对应表中的MSI -->
+	<select id="getVerifiedUserByMsi" parameterType="pd" resultType="pd">
+		select 
+			*,
+			(CASE WHEN a.MSTYPE = '1' THEN '手台' WHEN a.MSTYPE = '2' THEN '车台' ELSE '' END) AS MSNAME
+		 from 
+			TB_VERIFIED_NAME a
+		where 1=1
+		  and MSI = #{MSI}	
+	</select>
+	
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Link_infoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_LINK_INFO(
+			NAME,	
+			URL,
+			PARAMURL,	
+			IP,	
+			PORT,	
+			PROVINCEID,	
+			CITYID,	
+			MSBRAND,	
+			INTIME,	
+			SYSTEMID,
+			LINK_INFO_ID
+		) values (
+			#{NAME},	
+			#{URL},	
+			#{PARAMURL},
+			#{IP},	
+			#{PORT},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{MSBRAND},	
+			#{INTIME},
+			#{SYSTEMID},
+			#{LINK_INFO_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_LINK_INFO
+		where 
+			LINK_INFO_ID = #{LINK_INFO_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_LINK_INFO
+			set 
+				NAME = #{NAME},
+				URL = #{URL},
+				PARAMURL = #{PARAMURL},
+				IP = #{IP},
+				PORT = #{PORT},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				MSBRAND = #{MSBRAND},
+				INTIME = #{INTIME},
+				SYSTEMID = #{SYSTEMID},				
+			LINK_INFO_ID = LINK_INFO_ID
+			where 
+				LINK_INFO_ID = #{LINK_INFO_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			NAME,	
+			URL,
+			PARAMURL,	
+			IP,	
+			PORT,	
+			PROVINCEID,	
+			CITYID,	
+			MSBRAND,	
+			fn_companyValueByKey(MSBRAND) as MSBRANDNAME,	
+			INTIME,	
+			SYSTEMID,
+			LINK_INFO_ID
+		from 
+			TB_LINK_INFO
+		where 
+			LINK_INFO_ID = #{LINK_INFO_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.NAME,	
+				a.URL,
+				a.PARAMURL,	
+				a.IP,	
+				a.PORT,	
+				a.PROVINCEID,	
+				p.VALUE as PROVINCENAME,
+				a.CITYID,	
+				c.VALUE as CITYVALUE,
+				a.MSBRAND,	
+				fn_companyValueByKey(a.MSBRAND) as MSBRANDNAME,	
+				a.INTIME,	
+				a.SYSTEMID,
+				a.LINK_INFO_ID
+		from 
+				TB_LINK_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		    and 
+		        a.CITYID = c.CITYID    
+		 ORDER BY INTIME		
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				NAME,	
+				URL,
+				PARAMURL,	
+				IP,	
+				PORT,	
+				PROVINCEID,	
+				CITYID,	
+				MSBRAND,	
+				fn_companyValueByKey(MSBRAND) as MSBRANDNAME,	
+				INTIME,	
+				SYSTEMID,
+				LINK_INFO_ID
+		from 
+				TB_LINK_INFO 
+		ORDER BY INTIME
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_LINK_INFO
+		where 
+			LINK_INFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+
+	<!-- 列表所有的接入市级 -->
+	<select id="listLinkNms" parameterType="pd" resultType="pd">
+		select
+				a.CITYID,	
+				c.VALUE as CITYVALUE
+		from 
+				TB_LINK_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID  
+		    and 
+		        a.PROVINCEID = #{PROVINCEID,}    
+	</select>
+	
+	<!-- 列表所有的接入市级,但不包括自己所在地市 -->
+	<select id="listEffectCitys" parameterType="pd" resultType="pd">
+		select
+				a.CITYID,	
+				c.VALUE as CITYVALUE
+		from 
+				TB_LINK_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID 
+		<if test="PROVINCEID != null and PROVINCEID != ''">
+			and 
+		         a.PROVINCEID = #{PROVINCEID}  
+		</if>	
+		<if test="CITYID != null and CITYID != ''">
+			and 
+		        a.CITYID != #{CITYID} 
+		</if> 
+	</select>
+	
+	<!-- 根据省获取市的数据 -->
+	<select id="findCityList" parameterType="pd" resultType="pd">
+		select
+				a.CITYID as CITYID,	
+				a.SYSTEMID as SYSTEMID,
+				c.VALUE as CITYVALUE
+		from 
+				TB_LINK_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID  
+		    and 
+		    	a.PROVINCEID = #{PROVINCEID} 
+	</select>
+	
+	<!-- 根据省获取市的数据 -->
+	<select id="findLinkInfo" parameterType="pd" resultType="pd">
+		select
+		 *
+		from 
+				TB_LINK_INFO a		    	
+		where 1 = 1
+		<if test="PROVINCEID != null and PROVINCEID != ''">
+		and	
+          a.PROVINCEID = #{PROVINCEID}
+		</if>		
+		<if test="CITYID != null and CITYID != ''">
+		and	
+          a.CITYID = #{CITYID}
+		</if>
+		
+	</select>
+	
+	<select id="isCityOnly" parameterType="pd" resultType="pd">
+		SELECT count(1) as size
+		FROM tb_link_info 
+		WHERE 
+			1 = 1
+		AND
+			CITYID = #{CITYID} 
+		<if test="LINK_INFO_ID != '' and LINK_INFO_ID != null">
+			AND  LINK_INFO_ID != #{LINK_INFO_ID}
+		</if>	
+		
+	</select>
+	
+</mapper>

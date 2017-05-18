@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User_roamMapper">
+	
+	<!-- 新增/更新 用户数据-->
+	<insert id="saveOrUpdate" >
+	  <selectKey keyProperty="count" resultType="int" order="BEFORE">
+	    select count(*) from TB_USER_ROAM where MSI = #{MSI}
+	  </selectKey>
+	  <if test="count > 0">
+	    	update  TB_USER_ROAM
+			set 
+				PRIORITY = #{PRIORITY},
+				ROAMPOLICY = #{ROAMPOLICY},
+				EXPIREDATE = #{EXPIREDATE},
+				ROAMLIST = #{ROAMLIST},
+				INTIME = #{INTIME}
+			where 
+				MSI = #{MSI}
+	  </if>
+	  <if test="count==0">
+		    insert into TB_USER_ROAM(
+				MSI,	
+				PRIORITY,	
+				ROAMPOLICY,	
+				EXPIREDATE,	
+				ROAMLIST,
+				INTIME,	
+				USER_ROAM_ID
+			) values (
+				#{MSI},	
+				#{PRIORITY},	
+				#{ROAMPOLICY},	
+				#{EXPIREDATE},
+				#{ROAMLIST},	
+				#{INTIME},	
+				#{USER_ROAM_ID}
+			)
+	  </if>
+	</insert>
+	<!-- 根据MSN获取漫游配置 -->
+	<select id="findByMsn" parameterType="pd" resultType="pd">
+		select 
+			MSI,	
+			PRIORITY,	
+			ROAMPOLICY,	
+			ROAMLIST,
+			EXPIREDATE,	
+			INTIME,	
+			USER_ROAM_ID
+		from 
+			TB_USER_ROAM
+		where 
+			MSI = #{MSI}
+	</select>
+	
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_USER_ROAM(
+			MSI,	
+			PRIORITY,	
+			ROAMPOLICY,	
+			ROAMLIST,
+			EXPIREDATE,	
+			INTIME,	
+			USER_ROAM_ID
+		) values (
+			#{MSI},	
+			#{PRIORITY},	
+			#{ROAMPOLICY},	
+			#{ROAMLIST},
+			#{EXPIREDATE},	
+			#{INTIME},	
+			#{USER_ROAM_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_USER_ROAM
+		where 
+			USER_ROAM_ID = #{USER_ROAM_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_USER_ROAM
+			set 
+				MSI = #{MSI},
+				PRIORITY = #{PRIORITY},
+				ROAMPOLICY = #{ROAMPOLICY},
+				ROAMLIST = #{ROAMLIST},
+				EXPIREDATE = #{EXPIREDATE},
+				INTIME = #{INTIME},
+			USER_ROAM_ID = USER_ROAM_ID
+			where 
+				USER_ROAM_ID = #{USER_ROAM_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			MSI,	
+			PRIORITY,	
+			ROAMPOLICY,	
+			ROAMLIST,
+			EXPIREDATE,	
+			INTIME,	
+			USER_ROAM_ID
+		from 
+			TB_USER_ROAM
+		where 
+			USER_ROAM_ID = #{USER_ROAM_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.MSI,	
+				a.PRIORITY,	
+				a.ROAMPOLICY,	
+				a.ROAMLIST,
+				a.EXPIREDATE,	
+				a.INTIME,	
+				a.USER_ROAM_ID
+		from 
+				TB_USER_ROAM a
+		ORDER BY INTIME
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.MSI,	
+				a.PRIORITY,	
+				a.ROAMPOLICY,
+				a.ROAMLIST,	
+				a.EXPIREDATE,	
+				a.INTIME,	
+				a.USER_ROAM_ID
+		from 
+				TB_USER_ROAM a
+		ORDER BY INTIME
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_USER_ROAM
+		where 
+			USER_ROAM_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

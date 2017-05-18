@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BackupMapper">
+	<sql id="whereConditions">
+			<if test="TYPE != null and TYPE != ''"> and SYS_BACKUP.TYPE = #{TYPE} </if>
+			<if test="VALUE != null and VALUE != ''"> and SYS_BACKUP.VALUE = #{VALUE} </if>
+			<if test="NAME != null and NAME != ''"> and SYS_BACKUP.NAME = #{NAME} </if>
+		
+	</sql>
+	<sql id="wherePdConditions">
+			<if test="pd.TYPE != null and pd.TYPE != ''"> and SYS_BACKUP.TYPE = #{pd.TYPE} </if>
+			<if test="pd.VALUE != null and pd.VALUE != ''"> and SYS_BACKUP.VALUE = #{pd.VALUE} </if>
+			<if test="pd.NAME != null and pd.NAME != ''"> and SYS_BACKUP.NAME = #{pd.NAME} </if>
+		
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into SYS_BACKUP(
+			TYPE,	
+			VALUE,	
+			NAME,	
+			BACKUP_ID
+		) values (
+			#{TYPE},	
+			#{VALUE},	
+			#{NAME},	
+			#{BACKUP_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from SYS_BACKUP
+		where 
+			BACKUP_ID = #{BACKUP_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  SYS_BACKUP
+			set 
+			<if test="TYPE != null and TYPE != '' "> TYPE = #{TYPE}, </if>
+			<if test="VALUE != null and VALUE != '' "> VALUE = #{VALUE}, </if>
+			<if test="NAME != null and NAME != '' "> NAME = #{NAME}, </if>
+			BACKUP_ID = BACKUP_ID
+			where 
+				BACKUP_ID = #{BACKUP_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TYPE,	
+			VALUE,	
+			NAME,	
+			BACKUP_ID
+		from 
+			SYS_BACKUP
+		where 
+			BACKUP_ID = #{BACKUP_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				TYPE,	
+				VALUE,	
+				NAME,	
+				BACKUP_ID
+		from 
+				SYS_BACKUP
+		where 1=1
+		<include refid="BackupMapper.wherePdConditions"/>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				TYPE,	
+				VALUE,	
+				NAME,	
+				BACKUP_ID
+		from 
+				SYS_BACKUP
+		where 1=1
+		<include refid="BackupMapper.whereConditions"/>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from SYS_BACKUP
+		where 
+			BACKUP_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

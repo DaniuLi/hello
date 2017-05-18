@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserXMapper">
+	
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>  
+	
+	
+	<!-- 判断用户名和密码 -->
+	<select id="getUserInfo" parameterType="pd" resultType="pd" useCache="false"><!-- insert update delete (flushCache="true/false") -->
+		select * from SM_USER_TABLE 
+		where 1 = 1
+		<if test="USERNAME != null and PASSWORD != null">
+	  	and	USERNAME = #{USERNAME} and USERPASSWD = #{PASSWORD}
+		</if>
+	</select>
+	
+	<!-- 通过user_id获取数据 -->
+	<select id="findByUiId" parameterType="pd" resultType="pd" useCache="false">
+		select 
+			*
+		from 
+			SM_USER_TABLE
+		where 
+			USERID = #{USER_ID}
+	</select>
+		
+	
+	<!-- 通过USERNAME获取数据 -->
+	<select id="findByUId" parameterType="pd" resultType="pd" useCache="false">
+		select 
+			*
+		from 
+			SM_USER_TABLE
+		where 
+			USERNAME = #{USERNAME}
+	</select>
+
+	
+</mapper>

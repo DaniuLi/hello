@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Area_infoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_AREA_INFO(
+			PROVINCEID,	
+			CITYID,	
+			DISTRICTID,	
+			VALUE,	
+			AREA_INFO_ID
+		) values (
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{DISTRICTID},	
+			#{VALUE},	
+			#{AREA_INFO_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_AREA_INFO
+		where 
+			AREA_INFO_ID = #{AREA_INFO_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_AREA_INFO
+			set 
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				DISTRICTID = #{DISTRICTID},
+				VALUE = #{VALUE},
+			AREA_INFO_ID = AREA_INFO_ID
+			where 
+				AREA_INFO_ID = #{AREA_INFO_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			PROVINCEID,	
+			CITYID,	
+			DISTRICTID,	
+			VALUE,	
+			AREA_INFO_ID
+		from 
+			TB_AREA_INFO
+		where 
+			AREA_INFO_ID = #{AREA_INFO_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.DISTRICTID,	
+				a.VALUE,	
+				a.AREA_INFO_ID
+		from 
+				TB_AREA_INFO a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.DISTRICTID,	
+				a.VALUE,	
+				a.AREA_INFO_ID
+		from 
+				TB_AREA_INFO a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_AREA_INFO
+		where 
+			AREA_INFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

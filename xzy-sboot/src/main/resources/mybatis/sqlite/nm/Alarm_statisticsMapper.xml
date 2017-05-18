@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Alarm_statisticsMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_ALARM_STATISTICS(
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMID,	
+			CRITICALALARMS,	
+			MAJORALARMS,	
+			MINORALARMS,	
+			NORMALALARMS,	
+			COMMUNICATIONSALARMS,	
+			SOFTWAREALARMS,	
+			ENVIRONMENTALARMS,	
+			QOSALARMS,	
+			EQUIPMENTALARMS,	
+			NMSALARMS,	
+			CLEARCOUNT,	
+			CRITICALALARMRESOLVETIME,	
+			CRITICALALARMLONGCOUNT,	
+			MAJORALARMRESOLVETIME,	
+			MAJORALARMLONGCOUNT,	
+			OPDATE,	
+			INTIME,	
+			ALARM_STATISTICS_ID
+		) values (
+			#{TASKID},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{SYSTEMID},	
+			#{CRITICALALARMS},	
+			#{MAJORALARMS},	
+			#{MINORALARMS},	
+			#{NORMALALARMS},	
+			#{COMMUNICATIONSALARMS},	
+			#{SOFTWAREALARMS},	
+			#{ENVIRONMENTALARMS},	
+			#{QOSALARMS},	
+			#{EQUIPMENTALARMS},	
+			#{NMSALARMS},	
+			#{CLEARCOUNT},	
+			#{CRITICALALARMRESOLVETIME},	
+			#{CRITICALALARMLONGCOUNT},	
+			#{MAJORALARMRESOLVETIME},	
+			#{MAJORALARMLONGCOUNT},	
+			#{OPDATE},	
+			#{INTIME},	
+			#{ALARM_STATISTICS_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_ALARM_STATISTICS
+		where 
+			ALARM_STATISTICS_ID = #{ALARM_STATISTICS_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_ALARM_STATISTICS
+			set 
+				TASKID = #{TASKID},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				SYSTEMID = #{SYSTEMID},
+				CRITICALALARMS = #{CRITICALALARMS},
+				MAJORALARMS = #{MAJORALARMS},
+				MINORALARMS = #{MINORALARMS},
+				NORMALALARMS = #{NORMALALARMS},
+				COMMUNICATIONSALARMS = #{COMMUNICATIONSALARMS},
+				SOFTWAREALARMS = #{SOFTWAREALARMS},
+				ENVIRONMENTALARMS = #{ENVIRONMENTALARMS},
+				QOSALARMS = #{QOSALARMS},
+				EQUIPMENTALARMS = #{EQUIPMENTALARMS},
+				NMSALARMS = #{NMSALARMS},
+				CLEARCOUNT = #{CLEARCOUNT},
+				CRITICALALARMRESOLVETIME = #{CRITICALALARMRESOLVETIME},
+				CRITICALALARMLONGCOUNT = #{CRITICALALARMLONGCOUNT},
+				MAJORALARMRESOLVETIME = #{MAJORALARMRESOLVETIME},
+				MAJORALARMLONGCOUNT = #{MAJORALARMLONGCOUNT},
+				OPDATE = #{OPDATE},
+				INTIME = #{INTIME},
+			ALARM_STATISTICS_ID = ALARM_STATISTICS_ID
+			where 
+				ALARM_STATISTICS_ID = #{ALARM_STATISTICS_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			SYSTEMID,	
+			CRITICALALARMS,	
+			MAJORALARMS,	
+			MINORALARMS,	
+			NORMALALARMS,	
+			COMMUNICATIONSALARMS,	
+			SOFTWAREALARMS,	
+			ENVIRONMENTALARMS,	
+			QOSALARMS,	
+			EQUIPMENTALARMS,	
+			NMSALARMS,	
+			CLEARCOUNT,	
+			CRITICALALARMRESOLVETIME,	
+			CRITICALALARMLONGCOUNT,	
+			MAJORALARMRESOLVETIME,	
+			MAJORALARMLONGCOUNT,	
+			OPDATE,	
+			INTIME,	
+			ALARM_STATISTICS_ID
+		from 
+			TB_ALARM_STATISTICS
+		where 
+			ALARM_STATISTICS_ID = #{ALARM_STATISTICS_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMID,	
+				a.CRITICALALARMS,	
+				a.MAJORALARMS,	
+				a.MINORALARMS,	
+				a.NORMALALARMS,	
+				a.COMMUNICATIONSALARMS,	
+				a.SOFTWAREALARMS,	
+				a.ENVIRONMENTALARMS,	
+				a.QOSALARMS,	
+				a.EQUIPMENTALARMS,	
+				a.NMSALARMS,	
+				a.CLEARCOUNT,	
+				a.CRITICALALARMRESOLVETIME,	
+				a.CRITICALALARMLONGCOUNT,	
+				a.MAJORALARMRESOLVETIME,	
+				a.MAJORALARMLONGCOUNT,	
+				a.OPDATE,	
+				a.INTIME,	
+				a.ALARM_STATISTICS_ID
+		from 
+				TB_ALARM_STATISTICS a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.SYSTEMID,	
+				a.CRITICALALARMS,	
+				a.MAJORALARMS,	
+				a.MINORALARMS,	
+				a.NORMALALARMS,	
+				a.COMMUNICATIONSALARMS,	
+				a.SOFTWAREALARMS,	
+				a.ENVIRONMENTALARMS,	
+				a.QOSALARMS,	
+				a.EQUIPMENTALARMS,	
+				a.NMSALARMS,	
+				a.CLEARCOUNT,	
+				a.CRITICALALARMRESOLVETIME,	
+				a.CRITICALALARMLONGCOUNT,	
+				a.MAJORALARMRESOLVETIME,	
+				a.MAJORALARMLONGCOUNT,	
+				a.OPDATE,	
+				a.INTIME,	
+				a.ALARM_STATISTICS_ID
+		from 
+				TB_ALARM_STATISTICS a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_ALARM_STATISTICS
+		where 
+			ALARM_STATISTICS_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+	<!-- 通过ID获取数据 -->
+	<select id="findCount" parameterType="pd" resultType="java.lang.Integer">
+		select 			
+			count(ALARM_STATISTICS_ID) as COUNT
+		from 
+			TB_ALARM_STATISTICS 
+		where 
+            TASKID = #{TASKID}
+        and
+            PROVINCEID = #{PROVINCEID}
+        and
+            CITYID = #{CITYID}
+        and
+            SYSTEMID = #{SYSTEMID}    
+        and
+            OPDATE = #{OPDATE}            
+	</select>
+
+	<!-- 修改 -->
+	<update id="updateStaticsData" parameterType="pd">
+		update  TB_ALARM_STATISTICS
+			set 			
+				CRITICALALARMS = #{CRITICALALARMS},
+				MAJORALARMS = #{MAJORALARMS},
+				MINORALARMS = #{MINORALARMS},
+				NORMALALARMS = #{NORMALALARMS},
+				COMMUNICATIONSALARMS = #{COMMUNICATIONSALARMS},
+				SOFTWAREALARMS = #{SOFTWAREALARMS},
+				ENVIRONMENTALARMS = #{ENVIRONMENTALARMS},
+				QOSALARMS = #{QOSALARMS},
+				EQUIPMENTALARMS = #{EQUIPMENTALARMS},
+				NMSALARMS = #{NMSALARMS},
+				CLEARCOUNT = #{CLEARCOUNT},
+				CRITICALALARMRESOLVETIME = #{CRITICALALARMRESOLVETIME},
+				CRITICALALARMLONGCOUNT = #{CRITICALALARMLONGCOUNT},
+				MAJORALARMRESOLVETIME = #{MAJORALARMRESOLVETIME},
+				MAJORALARMLONGCOUNT = #{MAJORALARMLONGCOUNT},
+				INTIME = #{INTIME},
+				ALARM_STATISTICS_ID = ALARM_STATISTICS_ID
+			where 
+            	TASKID = #{TASKID}
+        	and
+            	PROVINCEID = #{PROVINCEID}
+        	and
+            	CITYID = #{CITYID}
+        	and
+            	SYSTEMID = #{SYSTEMID}    
+        	and
+            	OPDATE = #{OPDATE} 
+	</update>	
+
+<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_ALARM_STATISTICS
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>
+
+	<!-- 根据条件汇总查询告警统计数据 -->
+	<select id="findSummary" parameterType="pd" resultType="pd">
+		select 			
+				sum(CRITICALALARMS) as CRITICALALARMS,
+				sum(MAJORALARMS) as MAJORALARMS,
+				sum(MINORALARMS) as MINORALARMS,
+				sum(NORMALALARMS) as NORMALALARMS,
+				sum(COMMUNICATIONSALARMS) as COMMUNICATIONSALARMS,
+				sum(SOFTWAREALARMS) as SOFTWAREALARMS,
+				sum(ENVIRONMENTALARMS) as ENVIRONMENTALARMS,
+				sum(QOSALARMS) as QOSALARMS,
+				sum(EQUIPMENTALARMS) as EQUIPMENTALARMS,
+				sum(NMSALARMS) as NMSALARMS				
+		from 
+			TB_ALARM_STATISTICS 
+		where       
+            PROVINCEID = #{PROVINCEID}
+        <if test="CITYID != null and CITYID!=''">
+        and
+            CITYID = #{CITYID}
+        </if>   
+
+        <if test="STARTTIME != null and STARTTIME!=''">
+        and	OPDATE &gt;= #{STARTTIME}
+		</if>
+		<if test="ENDTIME != null and ENDTIME!=''">
+        and	OPDATE &lt;= #{ENDTIME}
+		</if>             
+	</select>
+
+	<!-- 根据条件查询按天告警统计数据(按省统计和按市统计共用该查询语句)-->
+	<select id="findDetailByOpDate" parameterType="pd" resultType="pd">
+		select 			
+				sum(CLEARCOUNT) as CLEARCOUNT,
+				sum(CRITICALALARMLONGCOUNT) as CRITICALALARMLONGCOUNT,
+				sum(MAJORALARMLONGCOUNT) as MAJORALARMLONGCOUNT,
+				sum(CRITICALALARMRESOLVETIME) as CRITICALALARMRESOLVETIME,
+				sum(MAJORALARMRESOLVETIME) as MAJORALARMRESOLVETIME,
+				OPDATE			
+		from 
+			TB_ALARM_STATISTICS 
+		where       
+            PROVINCEID = #{PROVINCEID}
+        <if test="CITYID != null and CITYID!=''">
+        and
+            CITYID = #{CITYID}
+        </if>  
+        <if test="STARTTIME != null and STARTTIME!=''">
+        and	OPDATE &gt;= #{STARTTIME}
+		</if>
+		<if test="ENDTIME != null and ENDTIME!=''">
+        and	OPDATE &lt;= #{ENDTIME}
+		</if>   
+        group by
+            OPDATE
+	</select>
+
+
+	<!-- 按地市汇总查询告警统计数据 -->
+	<select id="findSummaryByCity" parameterType="pd" resultType="pd">
+		select 	
+		        sum(a.CRITICALALARMS+a.MAJORALARMS+a.MINORALARMS+a.NORMALALARMS) as TOTALALARMS,		
+				sum(a.CRITICALALARMS) as CRITICALALARMS,
+				sum(a.MAJORALARMS) as MAJORALARMS,
+				sum(a.MINORALARMS) as MINORALARMS,
+				sum(a.NORMALALARMS) as NORMALALARMS,
+				sum(a.COMMUNICATIONSALARMS) as COMMUNICATIONSALARMS,
+				sum(a.SOFTWAREALARMS) as SOFTWAREALARMS,
+				sum(a.ENVIRONMENTALARMS) as ENVIRONMENTALARMS,
+				sum(a.QOSALARMS) as QOSALARMS,
+				sum(a.EQUIPMENTALARMS) as EQUIPMENTALARMS,
+				sum(a.NMSALARMS) as NMSALARMS,
+				a.CITYID,
+				c.VALUE as CITYNAME				
+		from 
+			TB_ALARM_STATISTICS a left join TB_CITY_INFO c
+		on
+		    a.CITYID = c.CITYID    
+		where       
+            a.PROVINCEID = #{PROVINCEID} 
+                    
+        <if test="STARTTIME != null and STARTTIME!=''">
+        and	a.OPDATE &gt;= #{STARTTIME}
+		</if>
+		<if test="ENDTIME != null and ENDTIME!=''">
+        and	a.OPDATE &lt;= #{ENDTIME}
+		</if>   
+		group by 
+            a.CITYID              
+	</select>
+</mapper>

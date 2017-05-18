@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CPEMapper">
+	<sql id="whereConditions">
+			<if test="CPEID != null and CPEID != ''"> and INMS_R_CPETELAUTHR.CPEID = #{CPEID} </if>
+	</sql>
+	<sql id="wherePdConditions">
+			<if test="pd.CPEID != null and pd.CPEID != ''"> and INMS_R_CPETELAUTHR.CPEID = #{pd.CPEID} </if>
+	</sql>
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			CPEID,
+			IMSI,
+			CPEIP,
+			STATUS
+		from 
+			INMS_R_CPETELAUTHR
+		where 
+			INMS_R_CPETELAUTHR.CPEID = #{CPEID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select 
+			CPEID,
+			IMSI,
+			CPEIP,
+			STATUS
+		from 
+			INMS_R_CPETELAUTHR
+		where 1=1
+		<include refid="CPEMapper.wherePdConditions"/>
+		ORDER BY INMS_R_CPETELAUTHR.CPEID
+	
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select 
+			CPEID,
+			IMSI,
+			CPEIP,
+			STATUS
+		from 
+			INMS_R_CPETELAUTHR
+		where 1=1
+		<include refid="CPEMapper.whereConditions"/>
+		ORDER BY INMS_R_CPETELAUTHR.CPEID
+	</select>
+	
+</mapper>

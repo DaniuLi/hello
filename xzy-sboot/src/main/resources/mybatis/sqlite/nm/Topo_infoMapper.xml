@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Topo_infoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_TOPO_INFO(
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			DEVTYPE,	
+			DEVNAME,	
+			MANUFACTURER,	
+			SYSTEMID,	
+			DEVID,	
+			DEVSTATE,	
+			LONGITUDE,	
+			LATITUDE,	
+			ALTITUDE,	
+			BSRLIST,	
+			ANTALTITUDE,	
+			ANTNUM,	
+			ANTTYPE,	
+			DIVERSITY,	
+			BANDWIDTH,	
+			LINKTYPE,	
+			ROOMPOWER,	
+			ROOMTYPE,	
+			ROOMSTATUS,	
+			COVERAREA,	
+			DISTRICT,	
+			TSADDRESS,	
+			INTIME,	
+			TOPO_INFO_ID
+		) values (
+			#{TASKID},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{DEVTYPE},	
+			#{DEVNAME},	
+			#{MANUFACTURER},	
+			#{SYSTEMID},	
+			#{DEVID},	
+			#{DEVSTATE},	
+			#{LONGITUDE},	
+			#{LATITUDE},	
+			#{ALTITUDE},	
+			#{BSRLIST},	
+			#{ANTALTITUDE},	
+			#{ANTNUM},	
+			#{ANTTYPE},	
+			#{DIVERSITY},	
+			#{BANDWIDTH},	
+			#{LINKTYPE},	
+			#{ROOMPOWER},	
+			#{ROOMTYPE},	
+			#{ROOMSTATUS},	
+			#{COVERAREA},	
+			#{DISTRICT},	
+			#{TSADDRESS},	
+			#{INTIME},	
+			#{TOPO_INFO_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_TOPO_INFO
+		where 
+			TOPO_INFO_ID = #{TOPO_INFO_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_TOPO_INFO
+			set 
+				TASKID = #{TASKID},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				DEVTYPE = #{DEVTYPE},
+				DEVNAME = #{DEVNAME},
+				MANUFACTURER = #{MANUFACTURER},
+				SYSTEMID = #{SYSTEMID},
+				DEVID = #{DEVID},
+				DEVSTATE = #{DEVSTATE},
+				LONGITUDE = #{LONGITUDE},
+				LATITUDE = #{LATITUDE},
+				ALTITUDE = #{ALTITUDE},
+				BSRLIST = #{BSRLIST},
+				ANTALTITUDE = #{ANTALTITUDE},
+				ANTNUM = #{ANTNUM},
+				ANTTYPE = #{ANTTYPE},
+				DIVERSITY = #{DIVERSITY},
+				BANDWIDTH = #{BANDWIDTH},
+				LINKTYPE = #{LINKTYPE},
+				ROOMPOWER = #{ROOMPOWER},
+				ROOMTYPE = #{ROOMTYPE},
+				ROOMSTATUS = #{ROOMSTATUS},
+				COVERAREA = #{COVERAREA},
+				DISTRICT = #{DISTRICT},
+				TSADDRESS = #{TSADDRESS},
+				INTIME = #{INTIME},
+			TOPO_INFO_ID = TOPO_INFO_ID
+			where 
+				TOPO_INFO_ID = #{TOPO_INFO_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			fn_provinceNameById(a.PROVINCEID) AS PROVINCENAME,	
+			fn_cityNameByCityId(a.CITYID) AS CITYNAME,
+			DEVTYPE,	
+			DEVNAME,	
+			MANUFACTURER,	
+			SYSTEMID,	
+			DEVID,	
+			DEVSTATE,	
+			LONGITUDE,	
+			LATITUDE,	
+			ALTITUDE,	
+			BSRLIST,	
+			ANTALTITUDE,	
+			ANTNUM,	
+			ANTTYPE,	
+			DIVERSITY,	
+			BANDWIDTH,	
+			LINKTYPE,	
+			ROOMPOWER,	
+			ROOMTYPE,	
+			ROOMSTATUS,	
+			COVERAREA,	
+			DISTRICT,	
+			TSADDRESS,	
+			INTIME,	
+			TOPO_INFO_ID
+		from 
+			TB_TOPO_INFO
+		where 
+			TOPO_INFO_ID = #{TOPO_INFO_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,
+				fn_provinceNameById(a.PROVINCEID) AS PROVINCENAME,	
+				fn_cityNameByCityId(a.CITYID) AS CITYNAME,	
+				a.DEVTYPE,	
+				a.DEVNAME,	
+				a.MANUFACTURER,	
+				a.SYSTEMID,	
+				a.DEVID,	
+				a.DEVSTATE,	
+				a.LONGITUDE,	
+				a.LATITUDE,	
+				a.ALTITUDE,	
+				a.BSRLIST,	
+				a.ANTALTITUDE,	
+				a.ANTNUM,	
+				a.ANTTYPE,	
+				a.DIVERSITY,	
+				a.BANDWIDTH,	
+				a.LINKTYPE,	
+				a.ROOMPOWER,	
+				a.ROOMTYPE,	
+				a.ROOMSTATUS,	
+				a.COVERAREA,	
+				a.DISTRICT,	
+				a.TSADDRESS,	
+				a.INTIME,	
+				a.TOPO_INFO_ID
+		from 
+				TB_TOPO_INFO a
+		ORDER BY INTIME	
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				fn_provinceNameById(a.PROVINCEID) AS PROVINCENAME,	
+				fn_cityNameByCityId(a.CITYID) AS CITYNAME,	
+				a.DEVTYPE,	
+				a.DEVNAME,	
+				a.MANUFACTURER,	
+				a.SYSTEMID,	
+				a.DEVID,	
+				a.DEVSTATE,	
+				a.LONGITUDE,	
+				a.LATITUDE,	
+				a.ALTITUDE,	
+				a.BSRLIST,	
+				a.ANTALTITUDE,	
+				a.ANTNUM,	
+				a.ANTTYPE,	
+				a.DIVERSITY,	
+				a.BANDWIDTH,	
+				a.LINKTYPE,	
+				a.ROOMPOWER,	
+				a.ROOMTYPE,	
+				a.ROOMSTATUS,	
+				a.COVERAREA,	
+				a.DISTRICT,	
+				a.TSADDRESS,	
+				a.INTIME,	
+				a.TOPO_INFO_ID
+		from 
+				TB_TOPO_INFO a
+		ORDER BY INTIME	
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_TOPO_INFO
+		where 
+			TOPO_INFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+
+
+	<!-- 通过ID获取数据 -->
+	<select id="findTopoCount" parameterType="pd" resultType="java.lang.Integer">
+		select 			
+			count(TOPO_INFO_ID) as COUNT
+		from 
+			TB_TOPO_INFO
+		where 
+		    TASKID = #{TASKID}
+		and
+		    PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}
+		and 
+		     DEVID = #{DEVID}          
+	</select>
+
+	<!-- 批量删除 -->
+	<delete id="deleteTopo">
+		delete from TB_TOPO_INFO
+		where 
+		    TOPO_INFO_ID = TOPO_INFO_ID
+		and 
+		    (
+		    <foreach collection="list" separator="or" item="i" index="index" > 
+		    (	TASKID = #{i.TASKID}
+			and
+		    	PROVINCEID = #{i.PROVINCEID}
+			and
+		    	CITYID = #{i.CITYID}
+			and 
+		    	DEVID = #{i.DEVID} 
+		    )
+		    </foreach>	
+		    )
+		    		     		  
+	</delete>
+
+
+	<!-- 修改 -->
+	<update id="modifyTopo" parameterType="pd">
+		update  TB_TOPO_INFO
+			set 
+				<if test="DEVTYPE != null">
+				DEVTYPE = #{DEVTYPE},
+				</if>
+				<if test="DEVNAME != null">
+				DEVNAME = #{DEVNAME},
+				</if>
+				<if test="MANUFACTURER != null">
+				MANUFACTURER = #{MANUFACTURER},
+				</if>
+				<if test="SYSTEMID != null">
+				SYSTEMID = #{SYSTEMID},
+				</if>
+				<if test="DEVSTATE != null">
+				DEVSTATE = #{DEVSTATE},
+				</if>
+				<if test="LONGITUDE != null">
+				LONGITUDE = #{LONGITUDE},
+				</if>
+				<if test="LATITUDE != null">
+				LATITUDE = #{LATITUDE},
+				</if>
+				<if test="ALTITUDE != null">
+				ALTITUDE = #{ALTITUDE},
+				</if>
+				<if test="BSRLIST != null">
+				BSRLIST = #{BSRLIST},
+				</if>
+				<if test="ANTALTITUDE != null">
+				ANTALTITUDE = #{ANTALTITUDE},
+				</if>
+				<if test="ANTNUM != null">
+				ANTNUM = #{ANTNUM},
+				</if>
+				<if test="ANTTYPE != null">
+				ANTTYPE = #{ANTTYPE},
+				</if>
+				<if test="DIVERSITY != null">
+				DIVERSITY = #{DIVERSITY},
+				</if>
+				<if test="BANDWIDTH != null">
+				BANDWIDTH = #{BANDWIDTH},
+				</if>
+				<if test="LINKTYPE != null">
+				LINKTYPE = #{LINKTYPE},
+				</if>
+				<if test="ROOMPOWER != null">
+				ROOMPOWER = #{ROOMPOWER},
+				</if>
+				<if test="ROOMTYPE != null">
+				ROOMTYPE = #{ROOMTYPE},
+				</if>
+				<if test="ROOMSTATUS != null">
+				ROOMSTATUS = #{ROOMSTATUS},
+				</if>
+				<if test="COVERAREA != null">
+				COVERAREA = #{COVERAREA},
+				</if>
+				<if test="DISTRICT != null">
+				DISTRICT = #{DISTRICT},
+				</if>
+				<if test="TSADDRESS != null">
+				TSADDRESS = #{TSADDRESS},
+				</if>
+				<if test="INTIME != null">
+				INTIME = #{INTIME},
+				</if>
+				TOPO_INFO_ID = TOPO_INFO_ID
+			where 
+			    TASKID = #{TASKID}
+			and
+			    PROVINCEID = #{PROVINCEID}
+			and
+			    CITYID = #{CITYID}
+			and 
+			    DEVID = #{DEVID}            	
+	</update>
+	
+	
+		<!-- 通过省ID市ID获取数据 -->
+	 <select id="findTopoList" parameterType="pd" resultType="pd">
+		select			
+				a.DEVTYPE as DEVTYPE,	
+				a.DEVNAME as DEVNAME,								
+				a.DEVID as DEVID,
+				a.TOPO_INFO_ID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				fn_provinceNameById(a.PROVINCEID) AS PROVINCENAME,	
+				fn_cityNameByCityId(a.CITYID) AS CITYNAME,
+				a.DEVTYPE,	
+				a.DEVNAME,	
+				a.SYSTEMID,	
+				a.DEVID,	
+				a.DEVSTATE,	
+				a.LONGITUDE,	
+				a.LATITUDE				
+		from 
+			TB_TOPO_INFO a
+		where 		    
+		    PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}		        
+	</select>
+	
+	
+	 <!-- 通过省ID 市ID 设备类型DEVTYPE = 2 -->
+	 <select id="findCurDomain" parameterType="pd" resultType="pd">
+		select			
+				a.DEVTYPE as DEVTYPE,	
+				a.DEVNAME as DEVNAME,								
+				a.DEVID as DEVID,
+				a.TOPO_INFO_ID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				fn_provinceNameById(a.PROVINCEID) AS PROVINCENAME,	
+				fn_cityNameByCityId(a.CITYID) AS CITYNAME,
+				a.DEVTYPE,	
+				a.DEVNAME,	
+				a.SYSTEMID,	
+				a.DEVID,	
+				a.DEVSTATE,	
+				a.LONGITUDE,	
+				a.LATITUDE				
+		from 
+			TB_TOPO_INFO a
+		where 		    
+		    PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+		and 
+		    DEVTYPE=2        
+	</select>
+	
+	
+	<!-- 通过 省ID 市ID 设备ID  获取设备详情 -->
+	<select id="getDeviceDetail" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			fn_provinceNameById(PROVINCEID) AS PROVINCENAME,	
+			fn_cityNameByCityId(CITYID) AS CITYNAME,	
+			DEVTYPE,	
+			DEVNAME,	
+			MANUFACTURER,	
+			SYSTEMID,	
+			DEVID,	
+			DEVSTATE,	
+			LONGITUDE,	
+			LATITUDE,	
+			ALTITUDE,	
+			BSRLIST,	
+			ANTALTITUDE,	
+			ANTNUM,	
+			ANTTYPE,	
+			DIVERSITY,	
+			BANDWIDTH,	
+			LINKTYPE,	
+			ROOMPOWER,	
+			ROOMTYPE,	
+			ROOMSTATUS,	
+			COVERAREA,	
+			DISTRICT,	
+			TSADDRESS,	
+			INTIME,	
+			TOPO_INFO_ID
+		from 
+			TB_TOPO_INFO
+		where 
+		    	DEVID = #{DEVID}
+		    <if test="CITYID != null">
+			   and
+			     CITYID = #{CITYID}
+			</if>
+			<if test="PROVINCEID != null">
+			and 
+			    PROVINCEID = #{PROVINCEID}  
+			</if>
+		LIMIT 1
+	</select>
+		<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_TOPO_INFO
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>
+
+	<!-- 进行设备统计 -->
+	<select id="findDeviceCount" parameterType="pd" resultType="java.lang.Long">
+		select 			
+			count(TOPO_INFO_ID) as COUNT
+		from 
+			TB_TOPO_INFO 
+		where 
+            PROVINCEID = #{PROVINCEID}
+        and
+            DEVTYPE = #{DEVTYPE}    
+	</select>
+
+	<!--按地市统计设备-->
+	<select id="findDeviceStatics" parameterType="pd" resultType="pd">
+		select 			
+			count(*) as DEVCOUNT,
+			a.CITYID,
+			b.VALUE as CITYNAME
+		from 
+			TB_TOPO_INFO a left join TB_CITY_INFO b
+		on
+		    a.CITYID = b.CITYID	
+		where 
+            a.PROVINCEID = #{PROVINCEID}
+        and
+            a.DEVTYPE = #{DEVTYPE}  
+        group by 
+            a.CITYID
+	</select>	
+</mapper>

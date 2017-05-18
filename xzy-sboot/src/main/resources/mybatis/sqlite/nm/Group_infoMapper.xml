@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Group_infoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_GROUP_INFO(
+			PROVINCEID,	
+			CITYID,	
+			NAME,	
+			GSN,	
+			MARKER,	
+			INTIME,	
+			GROUP_INFO_ID
+		) values (
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{NAME},	
+			#{GSN},	
+			#{MARKER},	
+			#{INTIME},	
+			#{GROUP_INFO_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_GROUP_INFO
+		where 
+			GROUP_INFO_ID = #{GROUP_INFO_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_GROUP_INFO
+			set 
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				NAME = #{NAME},
+				GSN = #{GSN},
+				MARKER = #{MARKER},
+				INTIME = #{INTIME},
+			GROUP_INFO_ID = GROUP_INFO_ID
+			where 
+				GROUP_INFO_ID = #{GROUP_INFO_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			a.PROVINCEID,	
+			p.VALUE as PROVINCEVALUE,	
+			a.CITYID,
+			c.VALUE as CITYVALUE,		
+			a.NAME,	
+			a.GSN,	
+			a.MARKER,	
+			a.INTIME,	
+			a.GROUP_INFO_ID
+		from 
+				TB_GROUP_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID
+		    and     
+				a.GROUP_INFO_ID = #{GROUP_INFO_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.PROVINCEID,	
+				p.VALUE as PROVINCEVALUE,	
+				a.CITYID,
+				c.VALUE as CITYVALUE,		
+				a.NAME,	
+				a.GSN,	
+				a.MARKER,	
+				a.INTIME,	
+				a.GROUP_INFO_ID
+		from 
+				TB_GROUP_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where 
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID  
+		  ORDER BY INTIME
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.PROVINCEID,	
+				a.CITYID,	
+				a.NAME,	
+				a.GSN,	
+				a.MARKER,	
+				a.INTIME,	
+				a.GROUP_INFO_ID
+		from 
+				TB_GROUP_INFO a
+		ORDER BY INTIME			
+	
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_GROUP_INFO
+		where 
+			GROUP_INFO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	
+
+	<select id="getTalkGroups" parameterType="pd" resultType="pd">
+		select
+				a.PROVINCEID,	
+				p.VALUE as PROVINCEVALUE,	
+				a.CITYID,
+				c.VALUE as CITYVALUE,		
+				a.NAME,	
+				a.GSN,	
+				a.MARKER,	
+				a.INTIME,	
+				a.GROUP_INFO_ID				
+		from 
+				TB_GROUP_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where   1=1
+		    and
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID 
+		<if test="PROVINCEID != null and PROVINCEID != ''">
+			and a.PROVINCEID = #{PROVINCEID}
+		</if>
+		<if test="CITYID != null and CITYID != ''">
+			and a.CITYID = #{CITYID}
+		</if>
+		<if test="NAME != null and NAME != ''">
+			and a.NAME = #{NAME}
+		</if>
+		<if test="GSN != null and GSN != ''">
+			and a.GSN = #{GSN}
+		</if>
+	</select>
+	
+	<select id="getTalkGroupslistPage" parameterType="page" resultType="pd">
+		select
+				a.PROVINCEID,	
+				p.VALUE as PROVINCEVALUE,	
+				a.CITYID,
+				c.VALUE as CITYVALUE,		
+				a.NAME,	
+				a.GSN,	
+				a.MARKER,	
+				a.INTIME,	
+				a.GROUP_INFO_ID				
+		from 
+				TB_GROUP_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where   1=1
+		    and
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID  
+		<if test="pd.PROVINCEID != null and pd.PROVINCEID != ''">
+			and a.PROVINCEID = #{pd.PROVINCEID}
+		</if>
+		<if test="pd.CITYID != null and pd.CITYID != ''">
+			and a.CITYID = #{pd.CITYID}
+		</if>
+		<if test="pd.NAME != null and pd.NAME != ''">
+			and a.NAME = #{pd.NAME}
+		</if>
+		<if test="pd.GSN != null and pd.GSN != ''">
+			and a.GSN = #{pd.GSN}
+		</if>
+	</select>
+	
+	
+	<!-- 通过GSN获取数据 -->
+	<select id="findByGsn" parameterType="pd" resultType="pd">
+		select
+				a.PROVINCEID,	
+				p.VALUE as PROVINCEVALUE,	
+				a.CITYID,
+				c.VALUE as CITYVALUE,		
+				a.NAME,	
+				a.GSN,	
+				a.MARKER,	
+				a.INTIME,	
+				a.GROUP_INFO_ID				
+		from 
+				TB_GROUP_INFO a,TB_PROVINCE_INFO p,TB_CITY_INFO c
+		where   1=1
+		    and
+		        a.PROVINCEID = p.PROVINCEID
+		  	and 
+		        a.CITYID = c.CITYID  
+		    and 
+			    a.GSN = #{GSN}
+	</select>
+	
+	
+</mapper>

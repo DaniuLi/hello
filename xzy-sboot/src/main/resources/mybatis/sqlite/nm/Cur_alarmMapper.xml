@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cur_alarmMapper">
+	<sql id="whereConditions">
+		<if test="TASKID != null and TASKID != '' "> and TB_CUR_ALARM.TASKID = #{TASKID} </if>
+		<if test="PROVINCEID != null and PROVINCEID != '' "> and TB_CUR_ALARM.PROVINCEID = #{PROVINCEID} </if>
+		<if test="CITYID != null and CITYID != '' "> and TB_CUR_ALARM.CITYID = #{CITYID} </if>
+		<if test="CATEGORY != null and CATEGORY != '' "> and TB_CUR_ALARM.CATEGORY = #{CATEGORY} </if>
+		<if test="SYSTEMID != null and SYSTEMID != '' "> and TB_CUR_ALARM.SYSTEMID = #{SYSTEMID} </if>
+		<if test="SYSTEMNAME != null and SYSTEMNAME != '' "> and TB_CUR_ALARM.SYSTEMNAME = #{SYSTEMNAME} </if>
+		<if test="DEVID != null and DEVID != '' "> and TB_CUR_ALARM.DEVID = #{DEVID} </if>
+		<if test="ALARMID != null and ALARMID != '' "> and TB_CUR_ALARM.ALARMID = #{ALARMID} </if>
+		<if test="SEVERITY != null and SEVERITY != '' "> and TB_CUR_ALARM.SEVERITY = #{SEVERITY} </if>
+		<if test="GENERATETIME != null and GENERATETIME != '' "> and TB_CUR_ALARM.GENERATETIME = #{GENERATETIME} </if>
+		<if test="DESCRIPTION != null and DESCRIPTION != '' "> and TB_CUR_ALARM.DESCRIPTION = #{DESCRIPTION} </if>
+		<if test="CAUSE != null and CAUSE != '' "> and TB_CUR_ALARM.CAUSE = #{CAUSE} </if>
+		<if test="ADVICE != null and ADVICE != '' "> and TB_CUR_ALARM.ADVICE = #{ADVICE} </if>
+		<if test="STATE != null and STATE != '' "> and TB_CUR_ALARM.STATE = #{STATE} </if>
+		<if test="INTIME != null and INTIME != '' "> and TB_CUR_ALARM.INTIME = #{INTIME} </if>
+		<if test="CUR_ALARM_ID != null and CUR_ALARM_ID != '' "> and TB_CUR_ALARM.CUR_ALARM_ID = #{CUR_ALARM_ID} </if>
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_CUR_ALARM(
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			CATEGORY,	
+			SYSTEMID,	
+			SYSTEMNAME,	
+			DEVID,	
+			ALARMID,	
+			SEVERITY,	
+			GENERATETIME,	
+			DESCRIPTION,	
+			CAUSE,	
+			ADVICE,	
+			STATE,	
+			INTIME,	
+			CUR_ALARM_ID
+		) values (
+			#{TASKID},	
+			#{PROVINCEID},	
+			#{CITYID},	
+			#{CATEGORY},	
+			#{SYSTEMID},	
+			#{SYSTEMNAME},	
+			#{DEVID},	
+			#{ALARMID},	
+			#{SEVERITY},	
+			#{GENERATETIME},	
+			#{DESCRIPTION},	
+			#{CAUSE},	
+			#{ADVICE},	
+			#{STATE},	
+			#{INTIME},	
+			#{CUR_ALARM_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_CUR_ALARM
+		where 
+			CUR_ALARM_ID = #{CUR_ALARM_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_CUR_ALARM
+			set 
+				TASKID = #{TASKID},
+				PROVINCEID = #{PROVINCEID},
+				CITYID = #{CITYID},
+				CATEGORY = #{CATEGORY},
+				SYSTEMID = #{SYSTEMID},
+				SYSTEMNAME = #{SYSTEMNAME},
+				DEVID = #{DEVID},
+				ALARMID = #{ALARMID},
+				SEVERITY = #{SEVERITY},
+				GENERATETIME = #{GENERATETIME},
+				DESCRIPTION = #{DESCRIPTION},
+				CAUSE = #{CAUSE},
+				ADVICE = #{ADVICE},
+				STATE = #{STATE},
+				INTIME = #{INTIME},
+			CUR_ALARM_ID = CUR_ALARM_ID
+			where 
+				CUR_ALARM_ID = #{CUR_ALARM_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			TASKID,	
+			PROVINCEID,	
+			CITYID,	
+			fn_cityNameByCityId(CITYID) AS CITYNAME,
+			CATEGORY,	
+			SYSTEMID,	
+			SYSTEMNAME,	
+			DEVID,	
+			ALARMID,	
+			SEVERITY,	
+			GENERATETIME,	
+			DESCRIPTION,	
+			CAUSE,	
+			ADVICE,	
+			STATE,	
+			INTIME,	
+			CUR_ALARM_ID
+		from 
+			TB_CUR_ALARM
+		where 
+			CUR_ALARM_ID = #{CUR_ALARM_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				fn_cityNameByCityId(a.CITYID) AS a.CITYNAME,
+				a.CATEGORY,	
+				a.SYSTEMID,	
+				a.SYSTEMNAME,	
+				a.DEVID,	
+				a.ALARMID,	
+				a.SEVERITY,	
+				a.GENERATETIME,	
+				a.DESCRIPTION,	
+				a.CAUSE,	
+				a.ADVICE,	
+				a.STATE,	
+				a.INTIME,	
+				a.CUR_ALARM_ID
+		from 
+				TB_CUR_ALARM a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				TASKID,	
+				PROVINCEID,	
+				CITYID,	
+				fn_cityNameByCityId(CITYID) AS CITYNAME,
+				CATEGORY,	
+				SYSTEMID,	
+				SYSTEMNAME,	
+				DEVID,	
+				ALARMID,	
+				SEVERITY,	
+				GENERATETIME,	
+				DESCRIPTION,	
+				CAUSE,	
+				ADVICE,	
+				STATE,	
+				INTIME,	
+				CUR_ALARM_ID
+		from 
+				TB_CUR_ALARM
+		where 1=1
+		<include refid="Cur_alarmMapper.whereConditions"/>
+		ORDER BY GENERATETIME
+	</select>
+	<!-- 	获得告警级别的各个数量 -->
+	<select id="categorylevelCount" parameterType="pd" resultType="pd">
+		SELECT
+			SEVERITY ,
+			COUNT(1) as SIZE
+		FROM
+			TB_CUR_ALARM
+		GROUP BY
+			SEVERITY
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_CUR_ALARM
+		where 
+			CUR_ALARM_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+
+	<!-- 判断存在性 -->
+	<select id="findAlarmCount" parameterType="pd" resultType="java.lang.Integer">
+		select 			
+			count(CUR_ALARM_ID) as COUNT
+		from 
+			TB_CUR_ALARM 
+		where 
+            TASKID = #{TASKID}
+        and
+            PROVINCEID = #{PROVINCEID}
+        and
+            CITYID = #{CITYID}
+        and
+            SYSTEMID = #{SYSTEMID}    
+        and
+            DEVID = #{DEVID} 
+        and 
+            ALARMID = #{ALARMID}     
+	</select>
+
+
+
+	<select id="findCurAlarm" parameterType="pd" resultType="pd">
+		select 			
+			a.TASKID,	
+				a.PROVINCEID,	
+				a.CITYID,	
+				fn_cityNameByCityId(a.CITYID) AS CITYNAME,
+				a.CATEGORY,	
+				a.SYSTEMID,	
+				a.SYSTEMNAME,	
+				a.DEVID,	
+				a.ALARMID,	
+				a.SEVERITY,	
+				a.GENERATETIME,	
+				a.DESCRIPTION,	
+				a.CAUSE,	
+				a.ADVICE,	
+				a.STATE,	
+				a.INTIME,	
+				a.CUR_ALARM_ID
+		from 
+			TB_CUR_ALARM a
+		where 
+            a.TASKID = #{TASKID}
+        and
+            a.PROVINCEID = #{PROVINCEID}
+        and
+            a.CITYID = #{CITYID}
+        and
+            a.SYSTEMID = #{SYSTEMID}    
+        and
+            a.DEVID = #{DEVID} 
+        and 
+            a.ALARMID = #{ALARMID}     
+            
+        ORDER BY GENERATETIME
+	</select>	
+
+
+		<!-- 删除-->
+	<delete id="deleteByCityInfo" parameterType="pd">
+		delete from TB_CUR_ALARM
+		where 
+			PROVINCEID = #{PROVINCEID}
+		and
+		    CITYID = #{CITYID}	
+	</delete>
+</mapper>

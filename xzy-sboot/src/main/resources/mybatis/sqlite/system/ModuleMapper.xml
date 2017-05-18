@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ModuleMapper">
+	<sql id="whereConditions">
+			<if test="MODULEID != null and MODULEID != ''"> and SYS_MODULE.MODULEID = #{MODULEID} </if>
+			<if test="MODULENAME != null and MODULENAME != ''"> and SYS_MODULE.MODULENAME = #{MODULENAME} </if>
+			<if test="MODULEDETAIL != null and MODULEDETAIL != ''"> and SYS_MODULE.MODULEDETAIL = #{MODULEDETAIL} </if>
+			<if test="LOGLEVEL != null and LOGLEVEL != ''"> and SYS_MODULE.LOGLEVEL = #{LOGLEVEL} </if>
+		
+	</sql>
+	<sql id="wherePdConditions">
+			<if test="pd.MODULEID != null and pd.MODULEID != ''"> and SYS_MODULE.MODULEID = #{pd.MODULEID} </if>
+			<if test="pd.MODULENAME != null and pd.MODULENAME != ''"> and SYS_MODULE.MODULENAME = #{pd.MODULENAME} </if>
+			<if test="pd.MODULEDETAIL != null and pd.MODULEDETAIL != ''"> and SYS_MODULE.MODULEDETAIL = #{pd.MODULEDETAIL} </if>
+			<if test="pd.LOGLEVEL != null and pd.LOGLEVEL != ''"> and SYS_MODULE.LOGLEVEL = #{pd.LOGLEVEL} </if>
+		
+	</sql>
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into SYS_MODULE(
+			MODULEID,	
+			MODULENAME,	
+			MODULEDETAIL,	
+			LOGLEVEL,	
+			MODULE_ID
+		) values (
+			#{MODULEID},	
+			#{MODULENAME},	
+			#{MODULEDETAIL},	
+			#{LOGLEVEL},	
+			#{MODULE_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from SYS_MODULE
+		where 
+			MODULE_ID = #{MODULE_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  SYS_MODULE
+			set 
+			<if test="MODULEID != null and MODULEID != '' "> MODULEID = #{MODULEID}, </if>
+			<if test="MODULENAME != null and MODULENAME != '' "> MODULENAME = #{MODULENAME}, </if>
+			<if test="MODULEDETAIL != null and MODULEDETAIL != '' "> MODULEDETAIL = #{MODULEDETAIL}, </if>
+			<if test="LOGLEVEL != null and LOGLEVEL != '' "> LOGLEVEL = #{LOGLEVEL}, </if>
+			MODULE_ID = MODULE_ID
+			where 
+				MODULE_ID = #{MODULE_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			MODULEID,	
+			MODULENAME,	
+			MODULEDETAIL,	
+			LOGLEVEL,	
+			MODULE_ID
+		from 
+			SYS_MODULE
+		where 
+			MODULE_ID = #{MODULE_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				MODULEID,	
+				MODULENAME,	
+				MODULEDETAIL,	
+				LOGLEVEL,	
+				MODULE_ID
+		from 
+				SYS_MODULE
+		where 1=1
+		<include refid="ModuleMapper.wherePdConditions"/>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				MODULEID,	
+				MODULENAME,	
+				MODULEDETAIL,	
+				LOGLEVEL,	
+				MODULE_ID
+		from 
+				SYS_MODULE
+		where 1=1
+		<include refid="ModuleMapper.whereConditions"/>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from SYS_MODULE
+		where 
+			MODULE_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>
