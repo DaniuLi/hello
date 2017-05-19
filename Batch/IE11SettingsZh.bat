@@ -1,16 +1,17 @@
 @echo off
-
 echo IE设置中，请不要关闭这个窗口  
 
 echo 添加可信任站点
-
-set srvip=
-set /p "srvip=请输入服务器IP(直接回车跳过):"
-if defined srvip (
-    set rangeip=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet" "Settings\ZoneMap\Ranges\%srvip%
-    reg add %rangeip% /f
-    reg add %rangeip% /v http /t REG_DWORD /d 2 /f
-    reg add %rangeip% /v :Range /t REG_SZ /d %srvip% /f
+set svrIP=
+set range=
+set rangeIP=
+set /p svrIP=请输入服务器IP(回车跳过):
+set range=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Ranges\
+set rangeIP=%range%%svrIP%
+if not "%svrIP%"=="" (
+    reg add "%rangeIP%" /f
+    reg add "%rangeIP%" /v http /t REG_DWORD /d 2 /f
+    reg add "%rangeIP%" /v :Range /t REG_SZ /d %svrIP% /f
 ) else echo 服务器IP未输入.
 
 echo 去掉对该区域中所有站点要求服务器验证(https://)
@@ -99,14 +100,18 @@ echo 文件下载:启用
 ::"1803"=dword:0
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" /v 1803 /t REG_DWORD /d 0 /f  
 
-echo 清空兼容性视图列表(该设置需重启浏览器后生效)
+echo 检查存储的页面的较新版本:每次访问网页时(该设置需重启浏览器后生效,请稍候手动重启IE浏览器.)
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v SyncMode5 /t REG_DWORD /d 3 /f
+
+echo 清空兼容性视图列表(该设置需重启浏览器后生效,请稍候手动重启IE浏览器.)
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation\ClearableListData" /v UserFilter /t REG_DWORD /d 0 /f
 
-set killIE=
-set /p "killIE=立即关闭IE浏览器 (确认请按Y)?:"
-if "%killIE%"=="Y"  (
-    taskkill /im IEXPLORE.EXE
-) else echo 请稍候手动重启IE浏览器.
+::set killIE=
+::set /p killIE=立即关闭IE浏览器 (确认请按Y)?:
+::echo %killIE%
+::if "%killIE%"=="Y" (
+::    taskkill /im IEXPLORE.EXE
+::) else echo 请稍候手动重启IE浏览器.
 
 echo 全部设置结束!  
 pause
