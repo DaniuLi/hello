@@ -12,21 +12,21 @@
             <view class="weui-tab__panel">
                 <view class="weui-panel__bd"  hidden="{{activeIndex != 0}}">
                     <view class="weui-media-box weui-media-box_text">
-                        <view class="weui-media-box__title weui-media-box__title_in-text">四月一日作业</view>
-                        <view class="weui-media-box__desc">今日打卡内容：1、阅读绘本并录音 2、默写单词 3、sightword。</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">舞蹈三级</view>
+                        <view class="weui-media-box__desc">上课时间：周六下午15:00-160:00</view>
                         <view class="weui-media-box__info">
-                            <view class="weui-media-box__info__meta">Jane</view>
-                            <view class="weui-media-box__info__meta">2017.4.1</view>
-                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                            <view class="weui-media-box__info__meta">教师：Jane</view>
+                            <view class="weui-media-box__info__meta">课次：16</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">详情</view>
                         </view>
                     </view>
                     <view class="weui-media-box weui-media-box_text">
-                        <view class="weui-media-box__title weui-media-box__title_in-text">四月二日作业</view>
-                        <view class="weui-media-box__desc">今日打卡内容：1、阅读绘本并录音 2、默写单词 3、sightword。</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">古筝</view>
+                        <view class="weui-media-box__desc">上课时间：周日下午15:00-160:00</view>
                         <view class="weui-media-box__info">
-                            <view class="weui-media-box__info__meta">Jane</view>
-                            <view class="weui-media-box__info__meta">2017.4.2</view>
-                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                            <view class="weui-media-box__info__meta">教师：David</view>
+                            <view class="weui-media-box__info__meta">课次：18</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">详情</view>
                         </view>
                     </view>
                 </view>

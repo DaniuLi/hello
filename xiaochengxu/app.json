@@ -13,7 +13,7 @@
     "backgroundTextStyle":"black",
     "backgroundColor":"#fff",
     "navigationBarBackgroundColor":"#000",
-    "navigationBarTitleText":"小作业",
+    "navigationBarTitleText":"小课程",
     "navigationBarTextStyle":"white",
     "enablePullDownRefresh":"true"
   },
@@ -24,7 +24,7 @@
     "borderStyle":"white",
     "list":[{
       "pagePath":"pages/navbar/navbar",
-      "text":"作业",
+      "text":"课程",
       "iconPath":"images/tabBar/list.png",
       "selectedIconPath":"images/tabBar/list_hl.png"
     },{
