@@ -1,0 +1,32 @@
+Now all print info will be written to message.log
+['common', 'dss_90', 'iepc_80', 'inms_254']
+('SubFilePath:', './filesCleaner.ini')
+a
+True
+24
+Name: a\a01.txt            | Date Created: Fri Jun 02 15:41:19 2017
+./b
+./b is not exists!!
+c
+True
+24
+4
+C:/Users/0216000543.ZTE/Desktop
+False
+2400
+Name: C:/Users/0216000543.ZTE/Desktop\有道词典Beta版.lnk | Date Created: Tue Feb 14 10:28:15 2017
+Name: C:/Users/0216000543.ZTE/Desktop\EC.exe - 快捷方式.lnk | Date Created: Tue Feb 07 14:15:52 2017
+Name: C:/Users/0216000543.ZTE/Desktop\搜索 Everything.lnk | Date Created: Wed Jun 29 09:41:58 2016
+Name: C:/Users/0216000543.ZTE/Desktop\SecureCRTPortable - 快捷方式.lnk | Date Created: Mon Jun 06 15:58:20 2016
+Name: C:/Users/0216000543.ZTE/Desktop\XX-Net.lnk | Date Created: Mon Jun 06 08:32:21 2016
+Name: C:/Users/0216000543.ZTE/Desktop\Lotus Notes.lnk | Date Created: Mon Jun 06 08:25:16 2016
+Name: C:/Users/0216000543.ZTE/Desktop\ZTE IM9.lnk | Date Created: Fri Jun 03 17:16:07 2016
+Name: C:/Users/0216000543.ZTE/Desktop\desktop.ini | Date Created: Fri Jun 03 16:21:20 2016
+100
+('SubFilePath:', '/home/ngomm/dss_90/server/conf/filesCleaner.ini')
+/home/ngomm/dss_90/server/conf/filesCleaner.ini is not exists!!
+('SubFilePath:', '/home/ngomm/iepc_80/server/conf/filesCleaner.ini')
+/home/ngomm/iepc_80/server/conf/filesCleaner.ini is not exists!!
+('SubFilePath:', '/home/ngomm/inms_254/server/conf/filesCleaner.ini')
+/home/ngomm/inms_254/server/conf/filesCleaner.ini is not exists!!
+Clean job done!
