@@ -16,6 +16,7 @@ def compare_file_time(keepperiod, file):
     else:
         return False
 
+#遍历文件并排序
 def traverseDirByOSWalk(path, includesubdir):
     file_dic = {}
     path = os.path.expanduser(path)
@@ -35,6 +36,7 @@ def traverseDirByOSWalk(path, includesubdir):
     #    line = "Name: {:<20} | Date Created: {:>20}".format(item[0], time.ctime(item[1]))
     #    logging.info(line)
 
+#根据个数设置删除文件
 def cleanFilesByNumber(path, includesubdir, filesnumber):
     sortedList = traverseDirByOSWalk(path, includesubdir)
     i = 1
@@ -43,9 +45,11 @@ def cleanFilesByNumber(path, includesubdir, filesnumber):
             line = "{0} | {1}".format(item[0],
                                       time.strftime("%Y-%m-%d %X",
                                                     time.localtime(item[1])))
+            os.remove(item[0])
             logging.info("cleaned by number: " + line)
         i = i + 1
 
+#根据时间设置删除文件
 def cleanFilesByPeriod(path, includesubdir, keepperiod):
     sortedList = traverseDirByOSWalk(path, includesubdir)
     for item in sortedList:
@@ -54,15 +58,16 @@ def cleanFilesByPeriod(path, includesubdir, keepperiod):
             line = "{0} | {1}".format(item[0],
                                       time.strftime("%Y-%m-%d %X",
                                                     time.localtime(item[1])))
+            os.remove(item[0])
             logging.info("cleaned by period: " + line)
 
 
 def cleanjob():
     # 读取安装写入的配置文件入口(平台及各网元配置文件路径)
-    commonfilepath = './filesCleanerConfig.ini'
-    #commonfilepath = '/home/ngomm/config/filesCleanerConfig.ini'
+    #commonfilepath = './filesCleanerConfig.ini'
+    commonfilepath = '/home/ngomm/config/filesCleanerConfig.ini'
     if os.path.exists(commonfilepath) == False:
-        logging.warning(commonfilepath+ ' is not exists!!')
+        logging.error(commonfilepath+ ' is not exists!!')
     else:
         pathConfig = ConfigParser.ConfigParser()
         pathConfig.readfp(open(commonfilepath))
@@ -100,8 +105,8 @@ def cleanjob():
                         cleanFilesByNumber(subsec, includesubdir, filesnumber)
 
 if __name__ == '__main__':
-    # log maxsize:10M count:5
-    handler = logging.handlers.RotatingFileHandler("CleanJob.log",
+    # log maxsize:10M count:5 日志文件生成脚本存放的目录
+    handler = logging.handlers.RotatingFileHandler("/home/ngomm/log/filesCleaner.log",
                                                    maxBytes=1073741824,
                                                    backupCount=5)
     datefmt = '%Y-%m-%d %H:%M:%S'

@@ -28,4 +28,4 @@ CREATE TABLE `t_course_timetable` (
 
 select distinct A.class_name, A.zks, A.ywcks, A.school_id, A.campus_id, B.teacher_name, B.class_id from t_class_student A, t_course_timetable B where A.student_id = 2 and A.class_id = B.class_id
 
-select distinct A.class_name, B.teacher_name, B.room_desc, B.course_date, B.begin_time, B.end_time from t_class_student A, t_course_timetable B where A.student_id =2 and A.class_id = B.class_id and  A.class_id = 19171001 
+select distinct A.class_name, B.teacher_name, B.room_desc, B.course_date, B.begin_time, B.end_time, B.type from t_class_student A, t_course_timetable B where A.student_id =2 and A.class_id = B.class_id and  A.class_id = 19171001  group by B.course_date asc
