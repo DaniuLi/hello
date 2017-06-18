@@ -1,0 +1,31 @@
+CREATE TABLE `t_class_student` (
+  `school_id` varchar(30) DEFAULT NULL COMMENT '学校ID',
+  `campus_id` varchar(64) DEFAULT NULL COMMENT '校区',
+  `class_id` int(11) DEFAULT NULL COMMENT '课程班级编号',
+  `class_name` varchar(100) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL COMMENT '学生ID',
+  `name` varchar(30) DEFAULT NULL COMMENT '学生姓名',
+  `ispay` int(11) DEFAULT NULL COMMENT '是否已缴费',
+  `zks` int(255) DEFAULT NULL COMMENT '总课时数',
+  `ywcks` int(255) DEFAULT NULL COMMENT '已完成课时数',
+  `status` int(11) DEFAULT NULL COMMENT '状态(正常, 退学)',
+  `employee_id` varchar(64) DEFAULT NULL COMMENT '课程顾问',
+  `employee_name` varchar(64) DEFAULT NULL,
+) 
+
+CREATE TABLE `t_course_timetable` (
+  `class_id` int(11) DEFAULT NULL COMMENT '课程班级编号',
+  `class_desc` varchar(100) DEFAULT NULL COMMENT '课程名称',
+  `course_date` date DEFAULT NULL COMMENT '日期',
+  `begin_time` datetime DEFAULT NULL COMMENT '开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `room_desc` varchar(64) DEFAULT NULL COMMENT '教室',
+  `type` int(11) DEFAULT NULL COMMENT '类型(正常  取消  补课)',
+  `status` int(11) DEFAULT NULL COMMENT '状态(未开始、已完成)',
+  `teacher_id` int(11) DEFAULT NULL COMMENT '教师ID',
+  `teacher_name` varchar(30) DEFAULT NULL COMMENT '教师',
+) 
+
+select distinct A.class_name, A.zks, A.ywcks, A.school_id, A.campus_id, B.teacher_name, B.class_id from t_class_student A, t_course_timetable B where A.student_id = 2 and A.class_id = B.class_id
+
+select distinct A.class_name, B.teacher_name, B.room_desc, B.course_date, B.begin_time, B.end_time, B.type from t_class_student A, t_course_timetable B where A.student_id =2 and A.class_id = B.class_id and  A.class_id = 19171001  group by B.course_date asc
