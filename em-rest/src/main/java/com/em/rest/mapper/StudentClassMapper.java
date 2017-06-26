@@ -1,7 +1,6 @@
 package com.em.rest.mapper;
 
 import com.em.rest.entity.T_class_student;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

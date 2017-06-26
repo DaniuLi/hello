@@ -65,7 +65,7 @@ def cleanFilesByPeriod(path, includesubdir, keepperiod):
 def cleanjob():
     # 读取安装写入的配置文件入口(平台及各网元配置文件路径)
     #commonfilepath = './filesCleanerConfig.ini'
-    commonfilepath = '/home/ngomm/config/filesCleanerConfig.ini'
+    commonfilepath = './config/filesCleanerConfig.ini'
     if os.path.exists(commonfilepath) == False:
         logging.error(commonfilepath+ ' is not exists!!')
     else:
@@ -94,19 +94,22 @@ def cleanjob():
                     filesnumber = -1
                     if subConfig.has_option(subsec, 'includesubdir'):
                         includesubdir = subConfig.getboolean(subsec, 'includesubdir')
-                        logging.debug(includesubdir)
+                        logging.debug("includesubdir:" + str(includesubdir))
                     if subConfig.has_option(subsec, 'keepperiod'):
                         keepperiod = subConfig.getint(subsec, 'keepperiod')
-                        logging.debug(keepperiod)
+                        logging.debug("keepperiod(Hours):" + str(keepperiod))
                         cleanFilesByPeriod(subsec, includesubdir, keepperiod)
                     if subConfig.has_option(subsec, 'filesnumber'):
                         filesnumber = subConfig.getint(subsec, 'filesnumber')
-                        logging.debug(filesnumber)
+                        logging.debug("filesnumber:" + str(filesnumber))
                         cleanFilesByNumber(subsec, includesubdir, filesnumber)
 
 if __name__ == '__main__':
     # log maxsize:10M count:5 日志文件生成脚本存放的目录
-    handler = logging.handlers.RotatingFileHandler("/home/ngomm/log/filesCleaner.log",
+    if os.path.exists("./log") == False:
+        os.mkdir(os.curdir + os.sep + "log")
+
+    handler = logging.handlers.RotatingFileHandler("./log/filesCleaner.log",
                                                    maxBytes=1073741824,
                                                    backupCount=5)
     datefmt = '%Y-%m-%d %H:%M:%S'

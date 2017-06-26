@@ -1,6 +1,7 @@
 package com.em.controller;
 
 import com.em.dao.PersonRepository;
+import com.em.entity.ClassInfo;
 import com.em.entity.Person;
 import com.em.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class PersonController {
     @GetMapping(value = "/person")
     private List<Person> personList() {
         return personRepository.findAll();
+    }
+
+
+    @GetMapping(value = "/classinfo")
+    private List<ClassInfo> classList() {
+        return personRepository.findAllClass();
     }
 
     /**
