@@ -105,6 +105,10 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Se
 
 echo 清空兼容性视图列表(该设置需重启浏览器后生效,请稍候手动重启IE浏览器.)
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation\ClearableListData" /v UserFilter /t REG_DWORD /d 0 /f
+echo 清除勾选(在兼容性视图中显示Intranet站点)
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation" /v IntranetCompatibilityMode /t REG_DWORD /d 0 /f
+echo 清除勾选(使用Microsoft兼容性列表)
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation" /v MSCompatibilityMode /t REG_DWORD /d 0 /f
 
 ::set killIE=
 ::set /p killIE=立即关闭IE浏览器 (确认请按Y)?:

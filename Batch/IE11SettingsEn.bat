@@ -40,6 +40,12 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Se
 echo Clears the compatibility view list (Internet Explorer need to be restarted,Please restart Internet Explorer manually.)
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation\ClearableListData" /v UserFilter /t REG_DWORD /d 0 /f
 
+echo Clear the IntranetCompatibilityMode
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation" /v IntranetCompatibilityMode /t REG_DWORD /d 0 /f
+
+echo Clear the MSCompatibilityMode
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\BrowserEmulation" /v MSCompatibilityMode /t REG_DWORD /d 0 /f
+
 ::set killIE=
 ::set /p "killIE=Close Internet Explorer immediately (press Y to do)?:"
 ::if "%killIE%"=="Y"  (
