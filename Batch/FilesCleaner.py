@@ -8,15 +8,19 @@ import logging
 import logging.handlers
 
 # 根据设置时间判断文件是否过期
+
+
 def compare_file_time(keepperiod, file):
     time_of_last_mod = os.path.getctime(file)
-    hours_between = (time.time() - time_of_last_mod) / (60*60)
+    hours_between = (time.time() - time_of_last_mod) / (60 * 60)
     if hours_between > keepperiod:
         return True
     else:
         return False
 
-#遍历文件并排序
+# 遍历文件并排序
+
+
 def traverseDirByOSWalk(path, includesubdir):
     file_dic = {}
     path = os.path.expanduser(path)
@@ -32,11 +36,13 @@ def traverseDirByOSWalk(path, includesubdir):
 
     return sorted(file_dic.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
     #file_list = sorted(file_dic.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
-    #for item in file_list:
+    # for item in file_list:
     #    line = "Name: {:<20} | Date Created: {:>20}".format(item[0], time.ctime(item[1]))
     #    logging.info(line)
 
-#根据个数设置删除文件
+# 根据个数设置删除文件
+
+
 def cleanFilesByNumber(path, includesubdir, filesnumber):
     sortedList = traverseDirByOSWalk(path, includesubdir)
     i = 1
@@ -49,7 +55,9 @@ def cleanFilesByNumber(path, includesubdir, filesnumber):
             logging.info("cleaned by number: " + line)
         i = i + 1
 
-#根据时间设置删除文件
+# 根据时间设置删除文件
+
+
 def cleanFilesByPeriod(path, includesubdir, keepperiod):
     sortedList = traverseDirByOSWalk(path, includesubdir)
     for item in sortedList:
@@ -67,7 +75,7 @@ def cleanjob():
     #commonfilepath = './filesCleanerConfig.ini'
     commonfilepath = './config/filesCleanerConfig.ini'
     if os.path.exists(commonfilepath) == False:
-        logging.error(commonfilepath+ ' is not exists!!')
+        logging.error(commonfilepath + ' is not exists!!')
     else:
         pathConfig = ConfigParser.ConfigParser()
         pathConfig.readfp(open(commonfilepath))
@@ -79,21 +87,22 @@ def cleanjob():
             logging.info("SubFilePath:" + subFilePath)
             subConfig = ConfigParser.ConfigParser()
             if os.path.exists(subFilePath) == False:
-                logging.warning(subFilePath+ ' is not exists!!')
+                logging.warning(subFilePath + ' is not exists!!')
             else:
                 subConfig.readfp(open(subFilePath))
                 subsecs = subConfig.sections()
                 for subsec in subsecs:
                     logging.info(subsec)
                     if os.path.exists(subsec) == False:
-                        logging.warning(subsec+ ' is not exists!!')
+                        logging.warning(subsec + ' is not exists!!')
                         continue
                     # 初始化默认值
                     includesubdir = False
                     keepperiod = -1
                     filesnumber = -1
                     if subConfig.has_option(subsec, 'includesubdir'):
-                        includesubdir = subConfig.getboolean(subsec, 'includesubdir')
+                        includesubdir = subConfig.getboolean(
+                            subsec, 'includesubdir')
                         logging.debug("includesubdir:" + str(includesubdir))
                     if subConfig.has_option(subsec, 'keepperiod'):
                         keepperiod = subConfig.getint(subsec, 'keepperiod')
@@ -103,6 +112,7 @@ def cleanjob():
                         filesnumber = subConfig.getint(subsec, 'filesnumber')
                         logging.debug("filesnumber:" + str(filesnumber))
                         cleanFilesByNumber(subsec, includesubdir, filesnumber)
+
 
 if __name__ == '__main__':
     # log maxsize:10M count:5 日志文件生成脚本存放的目录
