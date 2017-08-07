@@ -165,7 +165,13 @@ docker 还支持 docker pause,docker unpause 来暂停和恢复一个容器的�
 # 监控操作
 
 ## docker exec命令
-docker exec 命令的实质是进入到一个正在运行的容器中，并启动一个新的进程来监控容器，类似于 SSH 的功能。
+docker exec命令的实质是进入到一个正在运行的容器中，并启动一个新的进程来监控容器，类似于 SSH 的功能。
+
+    [root@localhost ~]# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    1dfa0e308e9b        ubuntu              "/bin/bash"         4 hours ago         Up 4 hours                              determined_lalande
+    [root@localhost ~]# docker exec -it 1dfa0e308e9b bash
+    root@localhost:/# 
 
 本例描述的步骤如下：
 1. 使用 docker run 命令在后台启动一个 server 容器。
