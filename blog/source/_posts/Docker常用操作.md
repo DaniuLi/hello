@@ -105,34 +105,101 @@ docker run 命令的作用是用来启动一个容器。
 
 ## 运行一个带交互的容器
 
+    [root@localhost ~]# docker run -i -t busybox
+    / # ls
+    bin   dev   etc   home  proc  root  sys   tmp   usr   var
+    / # 
+
 本例中，docker run 的-i 选项使得容器可以接收外部的标准输入，-t 选项使得容器内部开启一个伪终端，加上这两个参数后，就可以通过命令行接口和容器进行交互。
-在上图中，当运行 docker run 命令后，由于本地尚没有 ubuntu:14.04 这个镜像，所以该命令执行后，会首先去镜像仓库中下载对应的镜像包
-镜像包下载完毕后，容器运行后会驻留在该容器内部的 shell，065441d3c0db 是这个容器的 ID 号，也是其主机名。
+
 
 ## 查看运行态容器的信息
 
+    [root@localhost blog]# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    1575c6863d8b        busybox             "sh"                3 minutes ago       Up 3 minutes                            keen_fermat
+
+docker ps 命令可以查看处于运行态的容器信息，这里解释一下命令输出中各个字段
+的意义：
+1. CNTAINER ID：容器的 ID 号，一个哈希值，用于唯一确认一个容器。
+2. IMAGE： 此容器对应的镜像包。
+3. COMMAND： 该容器启动后，在该容器内运行的最近的一个命令。
+4. CREATED：容器创建的时间。
+5. STAUTS：容器当前的状态。
+6. PORTS：容器所开放的端口（本例未分配端口给该容器）。
+7. NAMES： docker 会给容器随机分配一个名字，以方便引用。也可以通过 run 命令的--name 选项手动指定。
+
 ## 跟踪容器对镜像做出的修改
+    [root@localhost ~]# docker attach 1575c6863d8b
+    / # cd /home
+    /home # ls
+    /home # touch test
+    /home # read escape sequence
+    [root@localhost ~]# docker diff 1575c6863d8b 
+    C /home
+    A /home/test
+    C /root
+    A /root/.ash_history
 
-## 容器的停止和开始
+docker的底层使用了 AUFS文件系统，镜像包是累进叠加的，最终的镜像被docker run命令生成一个容器后，该容器内部有一个 writable 的区域可以对镜像的内容进行修改，但镜像本身是只读的。
 
-# 调试操作
+本例描述的过程如下：
+1. 通过 docker attach 命令附着到正在运行的容器中。
+2. 在容器内做一些修改，本例中在/home 目录中新增了一个名为test的文件。
+3. 先后执行“ CTRL+P” +“ CTRL +Q”返回到本机 shell。
+4. 执行 docker diif 命令，可以看到容器相对于初始镜像做出的修改（ C:changed， A：added, D： deleted）。
+
+## 容器的停止
+    [root@localhost ~]# docker stop 1575c6863d8b 
+    1575c6863d8b
+
+可以通过 docker stop 命令停止一个容器的运行。 
+
+docker ps 命令只能看处于运行态的容器，如果想要查看所有的容器运行记录，需要通过 docker ps –a 命令。
+
+    [root@localhost ~]# docker ps -a
+    CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS                        PORTS               NAMES
+    1575c6863d8b        busybox             "sh"                      13 minutes ago      Exited (137) 2 minutes ago                        keen_fermat
+    e52b8d7d0b15        busybox             "echo 'Hello World\\!'"   2 days ago          Exited (0) 2 days ago                             dazzling_lalande
+    bb30ab886b21        hello-world         "/hello"                  2 days ago          Exited (0) 2 days ago                             sleepy_fermi
+
+docker 还支持 docker pause,docker unpause 来暂停和恢复一个容器的执行,具体可以查看命令帮助。
+
+# 监控操作
 
 ## docker exec命令
+docker exec命令的实质是进入到一个正在运行的容器中，并启动一个新的进程来监控容器，类似于 SSH 的功能。
 
-## docker 内建ps命令
+    [root@localhost ~]# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    1dfa0e308e9b        ubuntu              "/bin/bash"         4 hours ago         Up 4 hours                              determined_lalande
+    [root@localhost ~]# docker exec -it 1dfa0e308e9b bash
+    root@localhost:/# 
+
+本例描述的步骤如下：
+1. 使用 docker run 命令在后台启动一个 server 容器。
+2. 在本机 shell 中通过 docker ps 命令找到该容器对应的 ID。
+3. 通过 docker exec 命令登录到容器中，从命令行可以看出，已经进入了容器命令行的
+界面。
 
 ## docker stats命令
+通过 docker stats 命令，可以看到容器各项资源的使用情况。
+    [root@localhost hello]# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    25ce06e8b42c        busybox             "sh"                8 seconds ago       Up 7 seconds                            serene_payne
+    [root@localhost hello]# docker stats 25ce06e8b42c
+    CONTAINER           CPU %               MEM USAGE / LIMIT   MEM %               NET I/O             BLOCK I/O           PIDS
+    25ce06e8b42c        0.00%               56KiB / 7.443GiB    0.00%               648B / 0B           0B / 0B             0
+
+本例描述的步骤如下：
+1. 在本机 shell 中通过 docker ps 命令找到需要监控的容器对应的 ID。
+2. 运行 docker stats 命令，可以查看正在运行的进程信息。 从输出可以看到容器占用的CPU、内存、硬盘、网络的资源使用情况
 
 ## docker logs命令
 
-    [root@192 lxb]# docker ps
-    CONTAINER ID IMAGE COMMAND CREATED ...
-    44e3505a58ff mysql_server "/usr/bin/mysqld_safe" 30 minutes ago ...
-    [root@192 lxb]# docker logs 44e3505a58ff
-    151230 06:58:29 mysqld_safe Logging to '/var/log/mysqld.log'.
-    151230 06:58:29 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+    [root@192 lxb]# docker logs 25ce06e8b42c
 
 通过docker logs可以捕获到容器内部STDOUT和STD_ERR输出的信息，便于定位问题。
 本例描述的步骤如下：
 1. 在本机 shell 中通过 docker ps 命令找到需要监控的容器对应的 ID。
-2. 运行 docker logs 命令，可以查看容器内部的标准输出、标准错误信息。本例中可以看到 mysql 输出的日志文件。
+2. 运行 docker logs 命令，可以查看容器内部的标准输出、标准错误信息。
