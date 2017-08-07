@@ -69,3 +69,20 @@
 
 此处仅为示例，详细用法请参考[官方文档](https://docs.docker.com/engine/reference/builder/)。
 
+
+
+示例说明如下：
+
+1. 新建一个名为 Dockerfile 的文件。
+
+2. 在 Docker 文件里描述镜像的构建过程。典型的流程为：
+- [1] 引入基础镜像，如本例中的 ubuntu:14.04。
+- [2] 在该基础镜像上安装一系列软件，如本例中通过 apt-get 命令来安装了 mysql 以及相关的组件。
+- [3] 对软件进行配置。如本例中配置了 mysql 的挂载目录、工作目录、对外暴露的端口号等等。
+- [4] 设置容器运行后要执行的命令，例如本例中，设置了当容器运行时，需要通过mysqld_safe 命令来启动 mysql 服务器（上述 FROM， RUN， VOLUME， EXPOSE， CMD 等命令都是 Dockerfile 文件的基本语法元素，可以查看具体[官方文档](https://docs.docker.com/engine/reference/builder/)了解使用方式。）
+
+3. 通过 docker build 命令来制作镜像文件。 -t 选项为镜像取名， .则表示 Docker 文件在当前目录中。
+
+4. 通过 docker images 命令，可以查看新创建的镜像文件。
+
+5. 最后，通过 docker run 命令利用新建的镜像开启一个容器，从打印中可以看到 mysql服务已经生效了
