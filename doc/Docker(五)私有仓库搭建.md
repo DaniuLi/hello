@@ -25,8 +25,7 @@ docker-registry既然也是软件应用，自然最简单的方法就是使用�
 
 2. 通过该镜像启动一个容器
 
-        [root@localhost ~]# docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry registry
-        0d042a2d7efe5f24becf343c26957b77c369054dd2e7c94d14d04f8a4df5715f
+        [root@localhost ~]# docker run -d -p 5000:5000 -v /opt/data/registry:/tmp/registry --restart=always registry
 
    参数说明： 
 
@@ -42,9 +41,34 @@ docker-registry既然也是软件应用，自然最简单的方法就是使用�
    
    具体参数可以参考[registry官方文档地址](https://docs.docker.com/registry/)
 
-3. 客户端使用
+3. 修改配置文件以绕过Https认证
+
+   在”/etc/docker/“目录下，创建”daemon.json“文件。在文件中写入，保存退出后，重启docker。：
+
+        { "insecure-registries":["10.42.205.169:5000"] }
 
 
+4. 客户端使用
+
+    (1) 查询所有的镜像(私有镜像服务器的查询和删除需要通过Restful接口进行操作):
+        
+        http://10.42.205.169:5000/v2/_catalog
+
+    (2). 从docker下载一个镜像：
+        
+        docker pull hello-world
+
+    (3). 给该镜像打上私有仓库的标签：
+
+        docker tag hello-world 10.42.205.169:5000/hello-world
+
+    (4). 将其推送到私有仓库：
+
+        docker push 10.42.205.169:5000/hello-world
+
+    (5). 从私有仓库下载镜像：
+
+        docker pull 10.42.205.169:5000/hello-world
 
 
 ## 搭建有安全认证的docker仓库私服
