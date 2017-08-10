@@ -192,10 +192,6 @@ Dockerfile有自己书写格式和支持的命令，Docker程序解决这些命�
         
         [root@localhost dockerfile]# docker build -t ubuntu_tomcat_1 .
 
-
-
-
-
 ### 4. 注意事项
 1. 使用.dockerignore文件
 
