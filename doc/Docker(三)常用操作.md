@@ -1,4 +1,8 @@
-
+---
+title: Docker(三)常用操作
+tags: Docker
+categories: 技术
+---
 
 Docker命令比较多,并且每个命令有很多参数项，这里仅列出比较常用的一些操作（镜像相关、容器相关、调试等），以便有一个直观的印象。
 
@@ -27,7 +31,7 @@ Docker的命令清单可以通过运行 docker，或者 docker help 命令得到
 2. DESCRIPTION: 镜像的描述
 3. OFFICIAL: 是否docker官方发布
 
-
+<!-- more -->
 ## 从docker仓库中获取镜像
 
 使用 docker 必须自少有一个基础镜像包，镜像包可以从公共仓库中获取，也可以搭建私有的镜像仓库。

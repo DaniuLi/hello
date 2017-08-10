@@ -1,3 +1,9 @@
+---
+title: Docker(五)私有仓库搭建
+tags: Docker
+categories: 技术
+---
+
 # 私有仓库搭建
 
 ## Docker Registry
@@ -7,7 +13,7 @@
 Docker仓库实际上提供两方面的功能，一个是镜像管理，一个是认证。前者主要由docker-registry项目来实现，通过http服务来上传下载；后者可以通过docker-index（闭源）项目或者利用现成认证方案（如nginx）实现http请求管理。
 
 docker-registry既然也是软件应用，自然最简单的方法就是使用官方提供的已经部署好的镜像registry。官方文档中也给出了建议，直接运行sudo docker run -p 5000:5000 registry命令。这样确实能启动一个registry服务器，但是所有上传的镜像其实都是由docker容器管理，放在了/var/lib/docker/....某个目录下。而且一旦删除容器，镜像也会被删除。因此，我们需要想办法告诉docker容器镜像应该存放在哪里。registry镜像中启动后镜像默认位置是/tmp/registry，因此直接映射这个位置即可，比如到本机的/opt/data/registry目录下。
-
+<!-- more -->
 ## 不带安全认证的本地私有仓库
 
 1. 下载私有仓库镜像

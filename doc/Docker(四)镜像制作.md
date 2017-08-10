@@ -1,3 +1,9 @@
+---
+title: Docker(四)镜像制作
+tags: Docker
+categories: 技术
+---
+
 # 镜像介绍
 
 ## 镜像种类
@@ -22,7 +28,7 @@ Docker镜像的大小并不等于容器中文件系统内容的大小（不包�
 多个不同的Docker镜像可以共享相同的镜像层，举例说明：
 
 如果平均每个镜像500MB，岂不是100个镜像就需要准备50GB的存储空间？
-
+<!-- more -->
 结果往往不是我们想象的那样，假设docker build构建出来的镜像名分别为image1和image2，由于两个Dockerfile均基于ubuntu:14.04，因此，image1和image2这两个镜像均复用了镜像ubuntu:14.04，本地三个镜像的大小关系应该如下：
 
 ubuntu:14.04: 200MB
