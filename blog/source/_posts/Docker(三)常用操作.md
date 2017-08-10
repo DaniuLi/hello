@@ -1,6 +1,7 @@
 ---
-title: Docker常用操作
+title: Docker(三)常用操作
 tags: Docker
+categories: 技术
 ---
 
 Docker命令比较多,并且每个命令有很多参数项，这里仅列出比较常用的一些操作（镜像相关、容器相关、调试等），以便有一个直观的印象。
@@ -30,7 +31,7 @@ Docker的命令清单可以通过运行 docker，或者 docker help 命令得到
 2. DESCRIPTION: 镜像的描述
 3. OFFICIAL: 是否docker官方发布
 
-
+<!-- more -->
 ## 从docker仓库中获取镜像
 
 使用 docker 必须自少有一个基础镜像包，镜像包可以从公共仓库中获取，也可以搭建私有的镜像仓库。
@@ -44,7 +45,7 @@ Docker的命令清单可以通过运行 docker，或者 docker help 命令得到
     Digest: sha256:2605a2c4875ce5eb27a9f7403263190cd1af31e48a2044d400320548356251c4
     Status: Downloaded newer image for busybox:latest
 
-后续我们会搭建私有的镜像仓库。
+后续会搭建私有仓库，并针对私有仓库的使用另外做一个说明。
     
 
 ## 查看本机的镜像包
@@ -184,6 +185,7 @@ docker exec命令的实质是进入到一个正在运行的容器中，并启动
 
 ## docker stats命令
 通过 docker stats 命令，可以看到容器各项资源的使用情况。
+    
     [root@localhost hello]# docker ps
     CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
     25ce06e8b42c        busybox             "sh"                8 seconds ago       Up 7 seconds                            serene_payne
