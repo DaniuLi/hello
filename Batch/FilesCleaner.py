@@ -48,11 +48,11 @@ def cleanFilesByNumber(path, includesubdir, filesnumber):
     i = 1
     for item in sortedList:
         if i > filesnumber:
-            line = "{0} | {1}".format(item[0],
-                                      time.strftime("%Y-%m-%d %X",
-                                                    time.localtime(item[1])))
+            #line = "{0} | {1}".format(item[0],
+            #                          time.strftime("%Y-%m-%d %X",
+            #                                        time.localtime(item[1])))
             os.remove(item[0])
-            logging.info("cleaned by number: " + line)
+            logging.info("cleaned by number: " + item[0])
         i = i + 1
 
 # 根据时间设置删除文件
