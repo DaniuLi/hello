@@ -2,17 +2,21 @@
 echo IE设置中，请不要关闭这个窗口  
 
 echo 添加可信任站点
+:addSvrIP
 set svrIP=
 set range=
 set rangeIP=
-set /p svrIP=请输入服务器IP(回车跳过):
+set /p svrIP=请输入服务器IP:
 set range=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Ranges\
 set rangeIP=%range%%svrIP%
 if not "%svrIP%"=="" (
     reg add "%rangeIP%" /f
     reg add "%rangeIP%" /v http /t REG_DWORD /d 2 /f
     reg add "%rangeIP%" /v :Range /t REG_SZ /d %svrIP% /f
-) else echo 服务器IP未输入.
+) else (
+echo 服务器IP未输入.
+goto addSvrIP
+)
 
 echo 去掉对该区域中所有站点要求服务器验证(https://)
 ::[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2]
