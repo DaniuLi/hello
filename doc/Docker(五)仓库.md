@@ -170,59 +170,46 @@ $ sudo docker run -d -p 5000:5000 --restart=always --name registry ${IMAGE_ID}
 
 ###在私有仓库上传、下载、搜索镜像
 
-创建好私有仓库之后，就可以使用 `docker tag` 来标记一个镜像，然后推送它到仓库，别的机器上就可以下载下来了。例如私有仓库地址为 `192.168.7.26:5000`。
+创建好私有仓库之后，就可以使用 `docker tag` 来标记一个镜像，然后推送它到仓库，别的机器上就可以下载下来了。例如私有仓库地址为 `10.42.123.13:5000`。
 
 先在本机查看已有的镜像。
 ```
 $ sudo docker images
-REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-ubuntu                            latest              ba5877dc9bec        6 weeks ago         192.7 MB
-ubuntu                            14.04               ba5877dc9bec        6 weeks ago         192.7 MB
+REPOSITORY                        TAG                 IMAGE ID            CREATED             SIZE
+nginx                             v3                  706dd13cc995        About an hour ago   107MB
+nginx                             v2                  c64380f0eb1a        14 hours ago        107MB
 ```
 
-使用`docker tag` 将 `ba58` 这个镜像标记为 `192.168.7.26:5000/test`（格式为 `docker tag IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]`）。
+使用`docker tag` 将 `706dd` 这个镜像标记为 `10.42.123.13:5000/test`（格式为 `docker tag IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]`）。
 ```
-$ sudo docker tag ba58 192.168.7.26:5000/test
+$ sudo docker tag 706dd 10.42.123.13:5000/test
 root ~ # docker images
-REPOSITORY                        TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-ubuntu                            14.04               ba5877dc9bec        6 weeks ago         192.7 MB
-ubuntu                            latest              ba5877dc9bec        6 weeks ago         192.7 MB
-192.168.7.26:5000/test            latest              ba5877dc9bec        6 weeks ago         192.7 MB
+REPOSITORY                        TAG                 IMAGE ID            CREATED             SIZE
+10.42.123.13:5000/test            latest              706dd13cc995        About an hour ago   107MB
+nginx                             v3                  706dd13cc995        About an hour ago   107MB
+nginx                             v2                  c64380f0eb1a        14 hours ago        107MB
 ```
 使用 `docker push` 上传标记的镜像。
 ```
-$ sudo docker push 192.168.7.26:5000/test
-The push refers to a repository [192.168.7.26:5000/test] (len: 1)
-Sending image list
-Pushing repository 192.168.7.26:5000/test (1 tags)
-Image 511136ea3c5a already pushed, skipping
-Image 9bad880da3d2 already pushed, skipping
-Image 25f11f5fb0cb already pushed, skipping
-Image ebc34468f71d already pushed, skipping
-Image 2318d26665ef already pushed, skipping
-Image ba5877dc9bec already pushed, skipping
-Pushing tag for rev [ba5877dc9bec] on {http://192.168.7.26:5000/v1/repositories/test/tags/latest}
+$ sudo docker push 10.42.123.13:5000/test
+The push refers to a repository [10.42.123.13:5000/test]
+0a24c6c23fea: Pushed
+af5bd3938f60: Pushed
+29f11c413898: Pushed
+eb78099fbf7f: Pushed
+latest: digest: sha256:dde58011e84b7746c8a309f9144102cf337e5252e9575b84610a1d7b9adc57e2 size: 1155
 ```
-用 curl 查看仓库中的镜像。
+查看仓库中的镜像。
 ```
-$ curl http://192.168.7.26:5000/v1/search
-{"num_results": 7, "query": "", "results": [{"description": "", "name": "library/miaxis_j2ee"}, {"description": "", "name": "library/tomcat"}, {"description": "", "name": "library/ubuntu"}, {"description": "", "name": "library/ubuntu_office"}, {"description": "", "name": "library/desktop_ubu"}, {"description": "", "name": "dockerfile/ubuntu"}, {"description": "", "name": "library/test"}]}
+https://10.42.123.13:5000/v2/_catalog
 ```
-这里可以看到 `{"description": "", "name": "library/test"}`，表明镜像已经被成功上传了。
+这里可以看到 `{"repositories":["test"]}`，表明镜像已经被成功上传了。
 
 现在可以到另外一台机器去下载这个镜像。
 ```
-$ sudo docker pull 192.168.7.26:5000/test
-Pulling repository 192.168.7.26:5000/test
-ba5877dc9bec: Download complete
-511136ea3c5a: Download complete
-9bad880da3d2: Download complete
-25f11f5fb0cb: Download complete
-ebc34468f71d: Download complete
-2318d26665ef: Download complete
+$ sudo docker pull 10.42.123.13:5000/test
+
 $ sudo docker images
-REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-192.168.7.26:5000/test             latest              ba5877dc9bec        6 weeks ago         192.7 MB
 ```
 
 ## 仓库配置文件

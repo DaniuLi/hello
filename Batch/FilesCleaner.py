@@ -70,10 +70,10 @@ def cleanFilesByPeriod(path, includesubdir, keepperiod):
             logging.info("cleaned by period: " + line)
 
 
-def cleanjob():
+def cleanjob(commonfilepath):
     # 读取安装写入的配置文件入口(平台及各网元配置文件路径)
     #commonfilepath = './filesCleanerConfig.ini'
-    commonfilepath = './config/filesCleanerConfig.ini'
+    #commonfilepath = './config/filesCleanerConfig.ini'
     if os.path.exists(commonfilepath) == False:
         logging.error(commonfilepath + ' is not exists!!')
     else:
@@ -132,5 +132,5 @@ if __name__ == '__main__':
     clean_logger.addHandler(handler)
 
     logging.info("=============Clean job go!=================")
-    cleanjob()
+    cleanjob('./config/filesCleanerConfig.ini')
     logging.info("=============Clean job done!=================\n")

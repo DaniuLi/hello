@@ -254,19 +254,19 @@ docker run --name webserver -d -p 80:80 nginx
 
 这条命令会用 `nginx` 镜像启动一个容器，命名为 `webserver`，并且映射了 80 端口，这样我们可以用浏览器去访问这个 `nginx` 服务器。
 
-  如果是在 Linux 本机运行的 Docker，或者如果使用的是 Docker for Mac、Docker for Windows，那么可以直接访问：<http://localhost>；如果使用的是 Docker Toolbox，或者是在虚拟机、云服务器上安装的 Docker，则需要将 `localhost` 换为虚拟机地址或者实际云服务器地址。
+  如果是在 Linux 本机运行的 Docker，或者如果使用的是 Docker for Mac、Docker for Windows，那么可以直接访问：<http://localhost>；如果使用的是 Docker Toolbox，或者是在虚拟机、云服务器上安装的 Docker，则需要将 `localhost` 换为虚拟机地址或者实际云服务器地址,我们这里采用了宿主机IP访问。
 
 直接用浏览器访问的话，我们会看到默认的 Nginx 欢迎页面。
 
-![nginx](https://github.com/yeasy/docker_practice/blob/master/image/_images/images-mac-example-nginx.png)
+![nginx](images/nginx.png)
 
 
 现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用 `docker exec` 命令进入容器，修改其内容。
 
 ```bash
 $ docker exec -it webserver bash
-root@3729b97e8226:/# echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
-root@3729b97e8226:/# exit
+root@d414c7adba5a:/# echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
+root@d414c7adba5a:/# exit
 exit
 ```
 
@@ -276,7 +276,7 @@ exit
 
 现在我们再刷新浏览器的话，会发现内容被改变了。
 
-![docker nginx](https://github.com/yeasy/docker_practice/raw/master/image/_images/images-create-nginx-docker.png)
+![docker nginx](images/docker-nginx.png)
 
 我们修改了容器的文件，也就是改动了容器的存储层。我们可以通过 `docker diff` 命令看到具体的改动。
 
@@ -314,8 +314,8 @@ docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
 
 ```bash
 $ docker commit \
-    --author "Tao Wang <twang2218@gmail.com>" \
-    --message "修改了默认网页" \
+    --author "LT" \
+    --message "update index.html" \
     webserver \
     nginx:v2
 sha256:07e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214
@@ -330,7 +330,7 @@ $ docker images nginx
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               v2                  07e334659748        9 seconds ago       181.5 MB
 nginx               1.11                05a60462f8ba        12 days ago         181.5 MB
-nginx               latest              e43d811ce2f4        4 weeks ago         181.5 MB```
+nginx               latest              b8efb18f159b        4 weeks ago         181.5 MB```
 
 我们还可以用 `docker history` 具体查看镜像内的历史记录，如果比较 `nginx:latest` 的历史记录，我们会发现新增了我们刚刚提交的这一层。
 
@@ -338,7 +338,7 @@ nginx               latest              e43d811ce2f4        4 weeks ago         
 $ docker history nginx:v2
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
 07e334659748        54 seconds ago      nginx -g daemon off;                            95 B                修改了默认网页
-e43d811ce2f4        4 weeks ago         /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon    0 B
+b8efb18f159b        4 weeks ago         /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon    0 B
 <missing>           4 weeks ago         /bin/sh -c #(nop)  EXPOSE 443/tcp 80/tcp        0 B
 <missing>           4 weeks ago         /bin/sh -c ln -sf /dev/stdout /var/log/nginx/   22 B
 <missing>           4 weeks ago         /bin/sh -c apt-key adv --keyserver hkp://pgp.   58.46 MB
@@ -486,15 +486,15 @@ RUN buildDeps='gcc libc6-dev make' \
 $ docker build -t nginx:v3 .
 Sending build context to Docker daemon 2.048 kB
 Step 1 : FROM nginx
- ---> e43d811ce2f4
+ ---> b8efb18f159b
 Step 2 : RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
- ---> Running in 9cdc27646c7b
- ---> 44aa4490ce2c
-Removing intermediate container 9cdc27646c7b
-Successfully built 44aa4490ce2c
+ ---> Running in 0cfef91111ed
+ ---> 706dd13cc995
+Removing intermediate container 0cfef91111ed
+Successfully built 706dd13cc995
 ```
 
-从命令的输出结果中，我们可以清晰的看到镜像的构建过程。在 `Step 2` 中，如同我们之前所说的那样，`RUN` 指令启动了一个容器 `9cdc27646c7b`，执行了所要求的命令，并最后提交了这一层 `44aa4490ce2c`，随后删除了所用到的这个容器 `9cdc27646c7b`。
+从命令的输出结果中，我们可以清晰的看到镜像的构建过程。在 `Step 2` 中，如同我们之前所说的那样，`RUN` 指令启动了一个容器 `0cfef91111ed`，执行了所要求的命令，并最后提交了这一层 `706dd13cc995`，随后删除了所用到的这个容器 `0cfef91111ed`。
 
 这里我们使用了 `docker build` 命令进行镜像构建。其格式为：
 
@@ -536,7 +536,7 @@ Sending build context to Docker daemon 2.048 kB
 
 理解构建上下文对于镜像构建是很重要的，避免犯一些不应该的错误。比如有些初学者在发现 `COPY /opt/xxxx /app` 不工作后，于是干脆将 `Dockerfile` 放到了硬盘根目录去构建，结果发现 `docker build` 执行后，在发送一个几十 GB 的东西，极为缓慢而且很容易构建失败。那是因为这种做法是在让 `docker build` 打包整个硬盘，这显然是使用错误。
 
-一般来说，应该会将 `Dockerfile` 置于一个空目录下，或者项目根目录下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 `.gitignore` 一样的语法写一个 `.dockerignore`，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。
+一般来说，应该会将 `Dockerfile` 置于一个**空目录**下，或者**项目根目录**下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 `.gitignore` 一样的语法写一个 `.dockerignore`，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。
 
 那么为什么会有人误以为 `.` 是指定 `Dockerfile` 所在目录呢？这是因为在默认情况下，如果不额外指定 `Dockerfile` 的话，会将上下文目录下的名为 `Dockerfile` 的文件作为 Dockerfile。
 
@@ -617,7 +617,7 @@ REPOSITORY                  TAG                 IMAGE ID            CREATED     
 centos                      latest              0584b3d2cf6d        3 weeks ago         196.5 MB
 redis                       alpine              501ad78535f0        3 weeks ago         21.03 MB
 docker                      latest              cf693ec9b5c7        3 weeks ago         105.1 MB
-nginx                       latest              e43d811ce2f4        5 weeks ago         181.5 MB
+nginx                       latest              b8efb18f159b        5 weeks ago         181.5 MB
 ```
 
 我们可以用镜像的完整 ID，也称为 `长 ID`，来删除镜像。使用脚本的时候可能会用长 ID，但是人工输入就太累了，所以更多的时候是用 `短 ID` 来删除镜像。`docker images` 默认列出的就已经是短 ID 了，一般取前3个字符以上，只要足够区分于别的镜像就可以了。
