@@ -1,16 +1,19 @@
-from flask import Flask
-from redis import Redis
+import os,sys
 
+print(__file__)
 
-app = Flask(__name__)
-redis = Redis(host='redis', port=6379)
+print(os.path.realpath(__file__))
 
+print(os.path.dirname(os.path.realpath(__file__)))
 
-@app.route('/')
-def hello():
-    redis.incr('hits')
-    return 'Hello World! I have been seen %s times.' % redis.get('hits')
+print(os.path.split(os.path.realpath(__file__))[0])
 
+print(os.path.abspath(__file__))
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", debug=True)
+print(os.getcwd())
+
+print(os.curdir)
+
+print(sys.path[0])
+
+print(sys.argv[0])

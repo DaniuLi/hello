@@ -116,10 +116,12 @@ def cleanjob(commonfilepath):
 
 if __name__ == '__main__':
     # log maxsize:10M count:5 日志文件生成脚本存放的目录
-    if os.path.exists("./log") == False:
-        os.mkdir(os.curdir + os.sep + "log")
+    currdir = os.path.dirname(os.path.realpath(__file__))
+    logdir =  currdir + os.sep  + "log"
+    if os.path.exists(logdir) == False:
+        os.mkdir(logdir)
 
-    handler = logging.handlers.RotatingFileHandler("./log/filesCleaner.log",
+    handler = logging.handlers.RotatingFileHandler(logdir + os.sep + "filesCleaner.log",
                                                    maxBytes=1073741824,
                                                    backupCount=5)
     datefmt = '%Y-%m-%d %H:%M:%S'
@@ -132,5 +134,5 @@ if __name__ == '__main__':
     clean_logger.addHandler(handler)
 
     logging.info("=============Clean job go!=================")
-    cleanjob('./config/filesCleanerConfig.ini')
+    cleanjob(currdir + '/config/filesCleanerConfig.ini')
     logging.info("=============Clean job done!=================\n")

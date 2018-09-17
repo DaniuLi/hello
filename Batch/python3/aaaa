@@ -1,0 +1,9 @@
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @inform.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @empty.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpn_resp-IGD.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpn_resp-IGD-DeviceInfo.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpv_resp-IGD-DeviceInfo.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpn_resp-IGD-ManagementServer.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpv_resp-IGD-ManagementServer.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpn_resp-IGD-DeviceInfo-MemoryStatus.xml http://10.42.205.168:1234
+curl -i -H "Content-Type: application/xml" -H "Accept: application/xml" -X POST -d @gpv_resp-IGD-DeviceInfo-MemoryStatus.xml http://10.42.205.168:1234
