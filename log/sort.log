@@ -10,3 +10,139 @@
 2018-07-23 10:19:24 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\desktop.ini to \20180723101923\200907 
 2018-07-23 10:19:24 [INFO] =============Sort job done!=================
  
+2019-05-08 15:52:28 [INFO] =============Sort job go!================= 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to \20190508155228\200803 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to \20190508155228\200803 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to \20190508155228\200803 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to \20190508155228\200802 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to \20190508155228\200802 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to \20190508155228\200802 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to \20190508155228\200802 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to \20190508155228\200802 
+2019-05-08 15:52:28 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\desktop.ini to \20190508155228\200907 
+2019-05-08 15:52:28 [INFO] =============Sort job done!=================
+ 
+2019-05-08 15:54:20 [INFO] =============resize job go!================= 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to \20190508155420\200803 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to \20190508155420\200803 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to \20190508155420\200803 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to \20190508155420\200802 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to \20190508155420\200802 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to \20190508155420\200802 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to \20190508155420\200802 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to \20190508155420\200802 
+2019-05-08 15:54:20 [INFO] copy C:/Users/Public/Pictures/Sample Pictures\desktop.ini to \20190508155420\200907 
+2019-05-08 15:54:20 [INFO] =============resize job done!=================
+ 
+2019-05-08 15:55:09 [INFO] =============resize job go!================= 
+2019-05-08 15:57:15 [INFO] =============resize job go!================= 
+2019-05-08 15:59:10 [INFO] =============resize job go!================= 
+2019-05-08 15:59:10 [INFO] path:C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg 
+2019-05-08 15:59:49 [INFO] =============resize job go!================= 
+2019-05-08 16:00:58 [INFO] =============resize job go!================= 
+2019-05-08 16:14:54 [INFO] =============resize job go!================= 
+2019-05-08 16:16:36 [INFO] =============resize job go!================= 
+2019-05-08 16:16:54 [INFO] =============resize job go!================= 
+2019-05-08 16:17:24 [INFO] =============resize job go!================= 
+2019-05-08 16:18:50 [INFO] =============resize job go!================= 
+2019-05-08 16:19:20 [INFO] =============resize job go!================= 
+2019-05-08 16:24:33 [INFO] =============resize job go!================= 
+2019-05-08 16:25:12 [INFO] =============resize job go!================= 
+2019-05-08 16:29:26 [INFO] =============resize job go!================= 
+2019-05-08 16:32:21 [INFO] =============resize job go!================= 
+2019-05-08 16:32:39 [INFO] =============resize job go!================= 
+2019-05-08 16:34:08 [INFO] =============resize job go!================= 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:34:08 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163408 
+2019-05-08 16:35:59 [INFO] =============resize job go!================= 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:35:59 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508163559 
+2019-05-08 16:50:50 [INFO] =============resize job go!================= 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:50:50 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165050 
+2019-05-08 16:51:26 [INFO] =============resize job go!================= 
+2019-05-08 16:51:26 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:26 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:51:27 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165126 
+2019-05-08 16:52:56 [INFO] =============resize job go!================= 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Chrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Desert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Hydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Jellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Koala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Lighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Penguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\Tulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163408\resizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508163559\resizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165050\resizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165126\resizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeChrysanthemum.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeDesert.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeHydrangeas.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeJellyfish.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeKoala.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeLighthouse.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizePenguins.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] resize C:/Users/Public/Pictures/Sample Pictures\20190508165256\resizeresizeTulips.jpg to C:/Users/Public/Pictures/Sample Pictures\20190508165256 
+2019-05-08 16:52:56 [INFO] =============resize job done!=================
+ 

@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+#pyinstaller -F -w -p C:\Python36\Scripts FilesSort.py
 
 import fnmatch
 import logging
@@ -15,7 +16,7 @@ from tkinter import *
 from tkinter import Radiobutton, messagebox
 from tkinter.filedialog import askdirectory
 from tkinter.scrolledtext import ScrolledText
-
+from PIL import Image
 import exifread
 
 def latitude_and_longitude_convert_to_decimal_system(*arg):
@@ -94,6 +95,44 @@ def all_files(root, patterns='*', single_level=False, yield_folders=False):
                 if single_level:
                     break
 
+def resize_thumbnail(image, size, resample=Image.ANTIALIAS):
+    """
+    Resize image according to size.
+    image:      a Pillow image instance
+    size:       a list of two integers [width, height]
+    """
+    img.thumbnail((size[0], size[1]), resample)
+    return img
+
+def file_name(file_dir):   
+    L=[]   
+    for root, dirs, files in os.walk(file_dir):
+        for file in files:
+            if os.path.splitext(file)[1] == '.jpeg':
+                L.append(os.path.join(root, file))  
+    return L  
+
+def resize_files(paths):
+    resizedDir = srcPath.get() + os.sep + time.strftime('%Y%m%d%H%M%S',
+                                                       time.localtime(time.time()))
+    if os.path.exists(resizedDir) == False:
+        os.mkdir(resizedDir)                                                       
+    index = 1
+    for path in all_files(paths, '*.*'):       
+        logText.insert(END, path+'\n')
+        try:
+            with Image.open(path) as f:
+                #image = resize_thumbnail(f,[200,200])
+                f.thumbnail((800, 600), Image.ANTIALIAS)
+                f.save(resizedDir+os.sep+'resize'+os.path.basename(path), f.format)
+                logging.info("resize %s to %s" % (path, resizedDir))      
+                logText.insert(END, "resize %s to %s \n" % (path, resizedDir))
+                logText.update()
+        except BaseException:
+            logText.insert(END, "resize %s to %s failed!\n" % (path, resizedDir))
+        index += 1
+
+    logText.insert(END, "Total files:%d \n" % (index))
 
 def sort_files(paths):
     #sortedDir = os.curdir + os.sep + "sorted" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()));
@@ -142,7 +181,6 @@ def sort_files(paths):
 
     logText.insert(END, "Total files:%d \n" % (index))
 
-
 def initLog():
     # log maxsize:10M count:5
     if os.path.exists("./log") == False:
@@ -172,6 +210,16 @@ def sort():
     logText.see(END)
     messagebox.askokcancel('结果提示', '整理完毕')
 
+def resize():
+
+    logging.info("=============resize job go!=================")
+    logText.delete(1.0, END)
+    logText.insert(END, '================go!====================\n')
+    resize_files(srcPath.get())
+    logging.info("=============resize job done!=================\n")
+    logText.insert(END, '================done!====================\n')
+    logText.see(END)
+    messagebox.askokcancel('结果提示', '整理完毕')
 
 def selectSrcPath():
     srcPath.set(askdirectory())
@@ -196,6 +244,8 @@ if __name__ == '__main__':
 
     radioVar = IntVar()
 
+    imageWidth = 800
+    imageHigth = 600
     labelSrcPath = Label(root, text="待整理目录:")
     labelSrcPath.grid(row=0, column=0, sticky=W)
     entrySrcPath = Entry(root, textvariable=srcPath, width=60)
@@ -219,11 +269,24 @@ if __name__ == '__main__':
         root, text="按天分类", variable=radioVar, value=2)
     RadioYMD.grid(row=2, column=2, sticky=W)
 
-    buttonSort = Button(root, text="开始", width=10, command=sort)
+    buttonSort = Button(root, text="开始排序", width=10, command=sort)
     buttonSort.grid(row=2, column=3,  sticky=E)
 
+    labelImageWidth = Label(root, text="宽度:")
+    labelImageWidth.grid(row=3, column=1, sticky=W)
+    entryImageWidth = Entry(root, textvariable=imageWidth, width=10)
+    entryImageWidth.grid(row=3, column=1)
+
+    labelImageHigth = Label(root, text="高度:")
+    labelImageHigth.grid(row=3, column=2, sticky=W)
+    entryImageHigth = Entry(root, textvariable=imageHigth, width=10)
+    entryImageHigth.grid(row=3, column=2)
+
+    buttonResize = Button(root, text="开始调整", width=10, command=resize)
+    buttonResize.grid(row=3, column=3,  sticky=E)
+
     logText = ScrolledText(root)
-    logText.grid(row=3, columnspan=4, sticky=W)
+    logText.grid(row=4, columnspan=4, sticky=W)
     logText.insert(END, '\n\n')
     logText.insert(
         END, '         ================说明====================\n\n\n\n')
@@ -237,4 +300,4 @@ GPS_info = find_GPS_image(pic_path='123.jpg')
 address = find_address_from_GPS(GPS=GPS_info)
 print(address)
 """
-#pyinstaller -F -w -p C:\Python35-32\Scripts FilesSort.py
+
