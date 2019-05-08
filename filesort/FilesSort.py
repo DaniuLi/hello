@@ -11,7 +11,6 @@ import time
 import re
 import requests
 import json
-import PySimpleGUI as sg
 from tkinter import *
 from tkinter import Radiobutton, messagebox
 from tkinter.filedialog import askdirectory
@@ -290,9 +289,12 @@ if __name__ == '__main__':
     logText.insert(END, '\n\n')
     logText.insert(
         END, '         ================说明====================\n\n\n\n')
+    logText.insert(END, '文件日期分类功能：\n\n')
     logText.insert(END, '1、把待整理目录下所有文件按时间分类，并拷贝到输出目录下按(月/天)分目录保存\n\n')
-    logText.insert(END, '2、如果文件为照片，且带有EXIF信息，则按EXIF中的照片拍摄时间信息进行分类\n')
-
+    logText.insert(END, '2、如果文件为照片，且带有EXIF信息，则按EXIF中的照片拍摄时间信息进行分类\n\n')
+    logText.insert(END, '   \n\n')
+    logText.insert(END, '调整图片尺寸功能：\n\n')
+    logText.insert(END, '1、把待整理目录下所有文件按指定宽、高调整，并拷贝到输出目录下保存\n\n')
     root.mainloop()
 
 """
