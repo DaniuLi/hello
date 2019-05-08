@@ -243,8 +243,8 @@ if __name__ == '__main__':
 
     radioVar = IntVar()
 
-    imageWidth = 800
-    imageHigth = 600
+    imageWidth = IntVar()
+    imageHigth = IntVar()
     labelSrcPath = Label(root, text="待整理目录:")
     labelSrcPath.grid(row=0, column=0, sticky=W)
     entrySrcPath = Entry(root, textvariable=srcPath, width=60)
